@@ -1,0 +1,13 @@
+.elements__item {
+    width: 282px;
+    height: 361px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin:0 auto 20px;
+    overflow: hidden;
+}
