@@ -14,7 +14,7 @@ popUp.addEventListener('click', editOpener);  // ловим клик по кно
 const popClose = document.querySelector('.popup__icon-close'); // выбираем кнопку закртия popup
 
 function popUpClose() {
-    pop.classList.remove('popup_opened');   // функция для закрытия попапа
+    pop.classList.remove('popup_opened');   // функция для закрытия попапа, она удаляет модификатор _opened у элемента с классом popup
 }
 
 popClose.addEventListener('click', popUpClose);   // ловим клик по кнопке закрытия попапа и закрываем его функцией
@@ -22,7 +22,7 @@ popClose.addEventListener('click', popUpClose);   // ловим клик по к
 //-------------------------------------------------------------------
 // РЕДАКТИРОВАНИЕ ПРОФИЛЯ //
 // Находим форму в DOM
-let formElement = document.querySelector('form');
+const formElement = document.querySelector('form');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
@@ -31,14 +31,14 @@ function formSubmitHandler (evt) {
                                                 // О том, как это делать, расскажем позже.
 
     // Находим поля формы в DOM
-    let nameInput = document.querySelector('.popup__name');
-    let jobInput = document.querySelector('.popup__about');
+    const nameInput = document.querySelector('.popup__name');
+    const jobInput = document.querySelector('.popup__about');
     // Получите значение полей из свойства value
     nameInput.value;
     jobInput.value;
     // Выберите элементы, куда должны быть вставлены значения полей
-    let name = document.querySelector('.profile__name');
-    let job = document.querySelector('.profile__about');
+    const name = document.querySelector('.profile__name');
+    const job = document.querySelector('.profile__about');
 
     // Вставьте новые значения с помощью textContent
     name.textContent = nameInput.value;

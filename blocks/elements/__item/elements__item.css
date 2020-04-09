@@ -8,6 +8,5 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin:0 auto 20px;
-    overflow: hidden;
+    margin: 0 auto 20px;
 }
