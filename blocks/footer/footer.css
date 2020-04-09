@@ -1,12 +1,10 @@
+@import url(./__copyright/footer__copyight.css);
+
 .footer {
     max-width: 882px;
     margin: 46px auto 0;
     padding-bottom: 60px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 22px;
-    color: #545454;
+    
 }
 
 @media screen and (max-width: 900px) {
