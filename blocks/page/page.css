@@ -9,5 +9,5 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     position: relative;
-    overflow: hidden;
+    box-sizing: border-box;
 }

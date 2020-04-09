@@ -6,3 +6,9 @@
     margin-left: 36px;
     outline: none;
 }
+
+@media screen and (max-width: 500px) {
+    .popup__name{
+        max-width: 50vw;
+    }
+}

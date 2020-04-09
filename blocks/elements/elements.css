@@ -4,12 +4,13 @@
 @import url(./__like/elements__like.css);
 
 .elements {
-    max-width: 894px;
+    max-width: 882px;
     margin: 45px auto 0px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0;
+    box-sizing: border-box;
 
 }

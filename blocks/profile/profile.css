@@ -8,7 +8,7 @@
 
 .profile {
     margin: 40px auto 0;
-    max-width: 882px;
+    width: 882px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

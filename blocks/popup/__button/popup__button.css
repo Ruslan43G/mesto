@@ -17,3 +17,9 @@
     cursor: pointer;
     background: rgba(0, 0, 0, 0.8);
 }
+
+@media screen and (max-width: 500px) {
+    .popup__button {
+        max-width: 50vw;
+    }
+}
