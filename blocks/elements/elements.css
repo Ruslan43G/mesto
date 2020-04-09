@@ -4,13 +4,21 @@
 @import url(./__like/elements__like.css);
 
 .elements {
-    max-width: 882px;
+    max-width: 900px;
     margin: 45px auto 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     padding: 0;
-    box-sizing: border-box;
-
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }

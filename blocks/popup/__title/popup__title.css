@@ -6,7 +6,8 @@
     color: #000000;
     margin-left: 36px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 500px) {

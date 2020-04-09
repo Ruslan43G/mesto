@@ -1,5 +1,6 @@
-//ОТКРЫТИT И ЗАКРЫТИЕ ПОПАПА //
+//ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА //
 //---------------------------------------------------------------
+// Открываем
 const popUp = document.querySelector('.profile__edit-btn'); // выбираем кнопку редактировать
 const pop = document.querySelector('.popup'); // выбираем блок poup
 
@@ -10,7 +11,7 @@ function editOpener() {
 popUp.addEventListener('click', editOpener);  // ловим клик по кнопке редактирования и открываем popup
 
 //------------------------------------------------------------------
-
+// Закрываем
 const popClose = document.querySelector('.popup__icon-close'); // выбираем кнопку закртия popup
 
 function popUpClose() {
