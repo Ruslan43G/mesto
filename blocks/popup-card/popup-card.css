@@ -1,0 +1,22 @@
+@import url(./__icon-close/popup-card__icon-close.css);
+@import url(./__about/popup-card__about.css);
+@import url(./__button/popup-card__button.css);
+@import url(./__container/popup-card__container.css);
+@import url(./__name/popup-card__name.css);
+@import url(./__title/popup-card__title.css);
+
+.popup-card {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;   
+}

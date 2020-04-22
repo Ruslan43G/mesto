@@ -15,3 +15,8 @@
     margin-top: -9px;
     outline: none;
 }
+
+.elements__like:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

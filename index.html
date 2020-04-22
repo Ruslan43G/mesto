@@ -29,42 +29,13 @@
        </section>
        <!--ЭЛЕМЕНТЫ-->
        <main class="elements">
-           <div class="elements__item">
-               <img class="elements__img" src="./images/elements/1.jpg" alt="изображение карачаевск">
-               <h3 class="elements__title">Карачаевск</h3>
-               <button class="elements__like" type="button"></button>
-            </div>
-            <div class="elements__item">
-                <img class="elements__img" src="./images/elements/2.jpg" alt="изображение гора эльбрус">
-                <h3 class="elements__title">Гора эльбрус</h3>
-                <button class="elements__like" type="button"></button>
-            </div>
-            <div class="elements__item">
-                <img class="elements__img" src="./images/elements/3.jpg" alt="изображение домбай">
-                <h3 class="elements__title">Домбай</h3>
-                <button class="elements__like" type="button"></button>
-            </div>
-            <div class="elements__item">
-                <img class="elements__img" src="./images/elements/2.jpg" alt="изображение гора эльбрус">
-                <h3 class="elements__title">Гора эльбрус</h3>
-                <button class="elements__like" type="button"></button>
-            </div>
-            <div class="elements__item">
-                <img class="elements__img" src="./images/elements/3.jpg" alt="изображение домбай">
-                <h3 class="elements__title">Домбай</h3>
-                <button class="elements__like" type="button"></button>
-            </div>
-            <div class="elements__item">
-                <img class="elements__img" src="./images/elements/1.jpg" alt="изображение Карачаево-Черкессия">
-                <h3 class="elements__title">Карачаево-Черкессия</h3>
-                <button class="elements__like" type="button"></button>
-            </div>
+           
        </main>
        <!--ФУТЕР-->
        <footer class="footer">
-           <p class="footer__copyright">© 2020 Mesto Russia</p>
+           <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
        </footer>
-       <!--POPUP-->
+       <!--POPUP редактирования профиля-->
        <section class="popup">
             <form class="popup__container">
                 <button class="popup__icon-close" type="button"></button>
@@ -73,8 +44,27 @@
                 <input class="popup__about" type="text" placeholder="О себе" value="Исследователь океана">
                 <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
-        </section>  
+        </section>
+        <!--POPUP добавления карточки-->
+       <section class="popup-card">
+        <form class="popup-card__container">
+            <button class="popup-card__icon-close" type="button"></button>
+            <h3 class="popup-card__title">Новое место</h3>
+            <input class="popup-card__name" type="text" placeholder="Название" value="Название">
+            <input class="popup-card__about" type="text" placeholder="Ссылка на картинку" value="Ссылка на картинку">
+            <button class="popup-card__button" type="submit" aria-label="Сохранить">Сохранить</button>
+        </form>
+        </section>    
     </div>
+<!--ШАБЛОН ДЛЯ ДОБАВЛЕНИЯ КАРТОЧКИ-->
+<template id="template">
+    <div class="elements__item">
+        <button class="elements__trash" type="button"></button>
+        <img class="elements__img" src="" alt="изображение города">
+        <h3 class="elements__title"></h3>
+        <button class="elements__like" type="button"></button>
+     </div>    
+</template>    
 <script src="./scripts/script.js"></script>    
 </body>
 </html>

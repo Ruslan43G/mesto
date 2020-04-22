@@ -18,4 +18,5 @@
         -ms-flex-pack: justify;
             justify-content: space-between;
     margin: 0 auto 20px;
+    position: relative;
 }

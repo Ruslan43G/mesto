@@ -1,6 +1,6 @@
-.popup__button {
+.popup-card__button {
     width: 358px;
-    min-height: 50.15px;
+    height: 50.15px;
     left: 461px;
     top: 438.34px;
     background: #000000;
@@ -13,13 +13,13 @@
     outline: none;
 }
 
-.popup__button:hover {
+.popup-card__button:hover {
     cursor: pointer;
     background: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 500px) {
-    .popup__button {
+    .popup-card__button {
         max-width: 50vw;
     }
 }
