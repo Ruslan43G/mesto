@@ -40,8 +40,8 @@
             <form class="popup__container">
                 <button class="popup__icon-close" type="button"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <input class="popup__name" type="text" placeholder="Имя" value="Жак-Ив Кусто">
-                <input class="popup__about" type="text" placeholder="О себе" value="Исследователь океана">
+                <input class="popup__name" type="text" placeholder="Имя" value="Имя">
+                <input class="popup__about" type="text" placeholder="О себе" value="О себе">
                 <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
         </section>
@@ -56,7 +56,7 @@
         </form>
         </section>
          <!--POPUP с картинкой-->
-       <section class="popup-img">
+        <section class="popup-img">
            <div class="popup-img__container">
                 <button class="popup-img__icon-close" type="button"></button>
                 <img class="popup-img__image" src="https://pbs.twimg.com/media/EFXlbrpXoAALbeH.png:large" alt="изображение карточки">
@@ -67,8 +67,9 @@
 <!--ШАБЛОН ДЛЯ ДОБАВЛЕНИЯ КАРТОЧКИ-->
 <template id="template">
     <div class="elements__item">
-        <button class="elements__trash" type="button"></button>
         <img class="elements__img" src="https://pbs.twimg.com/media/EFXlbrpXoAALbeH.png:large" alt="изображение города">
+        <div class="elements__bg"></div>
+        <button class="elements__trash" type="button"></button>
         <h3 class="elements__title"></h3>
         <button class="elements__like" type="button"></button>
      </div>    

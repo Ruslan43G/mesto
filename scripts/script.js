@@ -96,7 +96,7 @@ initialCards.forEach(function (item) {
     likeBtn.addEventListener('click', function(evt) {             // Добавляем кнопке слушатель с функцией постановки лайка.
         evt.target.classList.toggle('elements__like_active');
     });
-    const cardImg = elementsItem.querySelector('.elements__img'); // выбрали картинку
+    const cardImg = elementsItem.querySelector('.elements__bg'); // выбрали картинку
     const cardTitle = elementsItem.querySelector('.elements__title'); // выбрали текст картинки
 
     cardImg.addEventListener('click', function() {
@@ -120,7 +120,7 @@ function cardPopupToggle() {
 // Функция добавления карточки пользователем.
 
 function userAddCard (evt) {
-    evt.preventDefault();
+    evt.preventDefault();  // отменяем дефолтный сабмит
     const template = document.querySelector('#template').content; //находим в DOM шамблон с карточкой.
     const elementsItem = template.cloneNode(true); //клонируем шаблон карточки.
     elementsItem.querySelector('.elements__img').src = cardUrlInput.value; //Добавляем ссылку на картинку
@@ -135,7 +135,7 @@ function userAddCard (evt) {
     
     });
 
-    const cardImg = elementsItem.querySelector('.elements__img'); // выбрали картинку
+    const cardImg = elementsItem.querySelector('.elements__bg'); // выбрали картинку
     const cardTitle = elementsItem.querySelector('.elements__title'); // выбрали текст картинки
 
     cardImg.addEventListener('click', function() {
