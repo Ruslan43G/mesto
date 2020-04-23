@@ -13,5 +13,7 @@
 @media screen and (max-width: 500px) {
     .popup-card__title{
         max-width: 50vw;
+        font-size: 18px;
+        line-height: 22px;
     }
 }

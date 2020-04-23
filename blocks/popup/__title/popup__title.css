@@ -5,13 +5,13 @@
     line-height: 29px;
     color: #000000;
     margin-left: 36px;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    
 }
 
 @media screen and (max-width: 500px) {
     .popup__title{
         max-width: 50vw;
+        font-size: 18px;
+        line-height: 22px;
     }
 }

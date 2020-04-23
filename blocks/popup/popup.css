@@ -7,17 +7,25 @@
 @import url(./__button/popup__button.css);
 
 .popup {
-    background-color: rgba(0, 0, 0, 0.5);
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: none;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+   background-color: rgba(0, 0, 0, 0.5);
+   height: 100%;
+   width: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   align-items: center;
+   visibility: hidden;
+   opacity: 0;
+   transition: visibility 0s, opacity 0.5s linear;
+   -webkit-transition: visibility 0s, opacity 0.5s linear;
+   -moz-transition: visibility 0s, opacity 0.5s linear;
+   -ms-transition: visibility 0s, opacity 0.5s linear;
+   -o-transition: visibility 0s, opacity 0.5s linear;
+   transition: 0.5s linear;
 }

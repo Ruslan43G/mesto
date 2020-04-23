@@ -1,16 +1,14 @@
-// выбираем кнопку редактировать
-const popUp = document.querySelector('.profile__edit-btn'); 
-// выбираем блок poup
-const pop = document.querySelector('.popup');
-// выбираем кнопку закртия popup 
-const popClose = document.querySelector('.popup__icon-close');
-// выбираем форму ввода имени в попапе
-const nameInput = document.querySelector('.popup__name');
-// выбираем форму ввода о себе в попапе
-const jobInput = document.querySelector('.popup__about');
+
+const popUp = document.querySelector('.profile__edit-btn'); // выбираем кнопку редактировать
+const pop = document.querySelector('.popup'); // выбираем блок poup 
+const popClose = document.querySelector('.popup__icon-close'); // выбираем кнопку закртия popup
+const nameInput = document.querySelector('.popup__name'); // выбираем форму ввода имени в попапе
+const jobInput = document.querySelector('.popup__about'); // выбираем форму ввода о себе в попапе
+
 // Выберите элементы, куда должны быть вставлены значения полей
 const name = document.querySelector('.profile__name');
 const job = document.querySelector('.profile__about'); 
+
 // функция для открытия/закрытия попапа. Добавляет у удаляет модификатор _opened со значением display: flex
 function popUpToggle() {
     if (pop.classList.contains('popup_opened')) {  // проверка наличия модификатора
@@ -19,6 +17,7 @@ function popUpToggle() {
         pop.classList.add('popup_opened');         // добавляет при отсутсвии  
     }
 }
+
 // Находим форму в DOM
 const formElement = document.querySelector('.popup__container');
 // Обработчик «отправки» формы, хотя пока
@@ -39,8 +38,6 @@ popUp.addEventListener('click', popUpToggle);
 // ловим клик по кнопке закрытия попапа и закрываем его функцией  
 popClose.addEventListener('click', popUpToggle);   
 //=======================================================================
-const elements = document.querySelector('.elements'); //находим в DOM блок elements.
-
 // Массив с данными для карточки при загрузке.
 const initialCards = [
     {
@@ -68,19 +65,8 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-
-// цикл добавляет на страницу 6 карточек с картинками
-
-for (let i = 0; i < 6; i++) {
-    const template = document.querySelector('#template').content; //находим в DOM шамблон с карточкой.
-    const elementsItem = template.cloneNode(true); //клонируем шаблон карточки.
-    elementsItem.querySelector('.elements__img').src = initialCards[i].link //Добавляем ссылку на картинку
-    elementsItem.querySelector('.elements__title').textContent = initialCards[i].name; // Добавляем заголовок
-    elements.append(elementsItem); //выводим на страницу
-};
-
-// ПОПАП карточки.
-
+// выбор ДОМ элементов
+const elements = document.querySelector('.elements'); //находим в DOM блок elements.
 const cardBtn = document.querySelector('.profile__add-btn'); // находим в DOM кнопку добавления карточки.
 const popupCard = document.querySelector('.popup-card'); // находим в DOM блок Попап добавления карточки
 const cardPopupCloseBtn = document.querySelector('.popup-card__icon-close'); // находим в DOM кнопку закрытия попапа.
@@ -90,8 +76,37 @@ const cardImage = document.querySelector('.elements__img'); // Находим в
 const cardName = document.querySelector('.elements__title'); // Находим в DOM место для названия карточки.
 const cardSavebtn = document.querySelector('.popup-card__button'); // Находим в DOM кнопку сохранения карточки.
 const formCardElement = document.querySelector('.popup-card__container'); // Находим в DOM форму попапа карточки.
-const cardDeleteBtn = document.querySelectorAll('.elements__trash'); // Находим в DOM кнопку удаления карточки.
+const popupImage = document.querySelector('.popup-img'); // попак с картинкой
+const popupImageCloseBtn = document.querySelector('.popup-img__icon-close'); // кнопка закрытия попапа с картинкой.
 
+
+//------------------------------------------------------------------
+//Вывод на страницу изначальных карточек из массива.
+
+initialCards.forEach(function (item) {
+    const template = document.querySelector('#template').content; //находим в DOM шамблон с карточкой.
+    const elementsItem = template.cloneNode(true); //клонируем шаблон карточки.
+    elementsItem.querySelector('.elements__img').src = item.link; //Добавляем ссылку на картинку
+    elementsItem.querySelector('.elements__title').textContent = item.name; // Добавляем заголовок
+    const cardDeleteBtn = elementsItem.querySelector('.elements__trash'); // Находим кнопку удалить
+    cardDeleteBtn.addEventListener('click', function(evt) {               // Добавляем кнопке слушатель с функцией удаления карточки
+         evt.target.parentElement.remove();  
+    });
+    const likeBtn = elementsItem.querySelector('.elements__like'); // Находим кнопку лайк.
+    likeBtn.addEventListener('click', function(evt) {             // Добавляем кнопке слушатель с функцией постановки лайка.
+        evt.target.classList.toggle('elements__like_active');
+    });
+    const cardImg = elementsItem.querySelector('.elements__img'); // выбрали картинку
+    const cardTitle = elementsItem.querySelector('.elements__title'); // выбрали текст картинки
+
+    cardImg.addEventListener('click', function() {
+        popupImage.classList.add('popup_opened');         // открываем попап с картинкой.  
+        popupImage.querySelector('.popup-img__image').src = item.link;  // добавляем URL картинки 
+        popupImage.querySelector('.popup-img__text').textContent = item.name;  // добавляем заголовок
+    });
+
+    elements.append(elementsItem); //выводим на страницу
+});
 
 // функция открытия и закрытия попапа карточки.
 function cardPopupToggle() {
@@ -100,28 +115,55 @@ function cardPopupToggle() {
     } else { 
         popupCard.classList.add('popup_opened');         // добавляет при отсутсвии  
     }
-}
-// функция добавления карточки.
-function cardAdd(evt) {
+};
+
+// Функция добавления карточки пользователем.
+
+function userAddCard (evt) {
     evt.preventDefault();
     const template = document.querySelector('#template').content; //находим в DOM шамблон с карточкой.
     const elementsItem = template.cloneNode(true); //клонируем шаблон карточки.
-    elementsItem.querySelector('.elements__img').src = cardUrlInput.value;  //Добавляем ссылку на картинку
+    elementsItem.querySelector('.elements__img').src = cardUrlInput.value; //Добавляем ссылку на картинку
     elementsItem.querySelector('.elements__title').textContent = cardNameInput.value; // Добавляем заголовок
-    elements.prepend(elementsItem); //выводим на страницу
-    cardPopupToggle();
-}
-// слушатели событий по кнопкам 
+    const cardDeleteBtn = elementsItem.querySelector('.elements__trash'); // Находим кнопку удалить
+    cardDeleteBtn.addEventListener('click', function(evt) {               // Добавляем кнопке слушатель с функцией удаления карточки
+         evt.target.parentElement.remove();  
+    });
+    const likeBtn = elementsItem.querySelector('.elements__like'); // Находим кнопку лайк.
+    likeBtn.addEventListener('click', function(evt) {              // Добавляем кнопке слушатель с функцией постановки лайка.
+        evt.target.classList.toggle('elements__like_active');
+    
+    });
+
+    const cardImg = elementsItem.querySelector('.elements__img'); // выбрали картинку
+    const cardTitle = elementsItem.querySelector('.elements__title'); // выбрали текст картинки
+
+    cardImg.addEventListener('click', function() {
+        console.log('click');
+        popupImage.classList.add('popup_opened');         // открываем попап с картинкой.  
+        popupImage.querySelector('.popup-img__image').src =  cardUrlInput.value;  // добавляем URL картинки 
+        popupImage.querySelector('.popup-img__text').textContent = cardNameInput.value;  // добавляем заголовок
+    });
+
+    elements.prepend(elementsItem); // выводим на страницу
+    cardPopupToggle(); // закрываем
+};
+
+formCardElement.addEventListener('submit', userAddCard); //
+
+
+// слушатели событий. 
 cardBtn.addEventListener('click', cardPopupToggle); // кнопка открыть. 
 cardPopupCloseBtn.addEventListener('click', cardPopupToggle); // кнопка закрыть.
-formCardElement.addEventListener('submit', cardAdd);
-cardSavebtn.addEventListener('click', cardAdd);
 
-// функция удаления карточек по клику на кнопку.
-cardDeleteBtn.forEach(item => item.addEventListener('click', function() {
-    const cardItem = item.closest('.elements__item');
-    cardItem.remove();   
-}));
+popupImageCloseBtn.addEventListener('click', function() {
+    popupImage.classList.remove('popup_opened');      // Закрываем попап с картинкой
+});
+
+
+
+
+
 
 
 

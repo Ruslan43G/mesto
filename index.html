@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./pages/index.css">
     <title>mesto</title>
 </head>
-<body>
+<body class="body">
     <!--блок page-->
     <div class="page">
         <!--ШАПКА-->
@@ -29,7 +29,7 @@
        </section>
        <!--ЭЛЕМЕНТЫ-->
        <main class="elements">
-           
+           <!--сюда JS вставляет карточки  -->
        </main>
        <!--ФУТЕР-->
        <footer class="footer">
@@ -52,15 +52,23 @@
             <h3 class="popup-card__title">Новое место</h3>
             <input class="popup-card__name" type="text" placeholder="Название" value="Название">
             <input class="popup-card__about" type="text" placeholder="Ссылка на картинку" value="Ссылка на картинку">
-            <button class="popup-card__button" type="submit" aria-label="Сохранить">Сохранить</button>
+            <button class="popup-card__button" type="submit" aria-label="Создать">Создать</button>
         </form>
+        </section>
+         <!--POPUP с картинкой-->
+       <section class="popup-img">
+           <div class="popup-img__container">
+                <button class="popup-img__icon-close" type="button"></button>
+                <img class="popup-img__image" src="https://pbs.twimg.com/media/EFXlbrpXoAALbeH.png:large" alt="изображение карточки">
+                <p class="popup-img__text"></p>
+            </div>
         </section>    
     </div>
 <!--ШАБЛОН ДЛЯ ДОБАВЛЕНИЯ КАРТОЧКИ-->
 <template id="template">
     <div class="elements__item">
         <button class="elements__trash" type="button"></button>
-        <img class="elements__img" src="" alt="изображение города">
+        <img class="elements__img" src="https://pbs.twimg.com/media/EFXlbrpXoAALbeH.png:large" alt="изображение города">
         <h3 class="elements__title"></h3>
         <button class="elements__like" type="button"></button>
      </div>    

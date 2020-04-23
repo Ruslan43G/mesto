@@ -10,5 +10,7 @@
 @media screen and (max-width: 500px) {
     .popup__name{
         max-width: 50vw;
+        font-size: 12px;
+        line-height: 15px;
     }
 }

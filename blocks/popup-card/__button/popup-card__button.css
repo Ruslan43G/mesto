@@ -21,5 +21,7 @@
 @media screen and (max-width: 500px) {
     .popup-card__button {
         max-width: 50vw;
+        font-size: 14px;
+        line-height: 17px;
     }
 }
