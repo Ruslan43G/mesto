@@ -1,7 +1,6 @@
 @import url(./__container/popup__container.css);
 @import url(./__icon-close/popup__icon-close.css);
 @import url(./__title/popup__title.css);
-@import url(./__form/popup__form.css);
 @import url(./__name/popup__name.css);
 @import url(./__about/popup__about.css);
 @import url(./__button/popup__button.css);
@@ -23,9 +22,5 @@
    visibility: hidden;
    opacity: 0;
    transition: visibility 0s, opacity 0.5s linear;
-   -webkit-transition: visibility 0s, opacity 0.5s linear;
-   -moz-transition: visibility 0s, opacity 0.5s linear;
-   -ms-transition: visibility 0s, opacity 0.5s linear;
-   -o-transition: visibility 0s, opacity 0.5s linear;
    transition: 0.5s linear;
 }

@@ -2,7 +2,7 @@
     width: 24px;
     height: 24px;
     -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     background-color: #000000;
     border: 1px solid #ffffff;
     background-image: url(../../../images/profile/edit.svg);

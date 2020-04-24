@@ -21,9 +21,5 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
-   -webkit-transition:;
-   -moz-transition:;
-   -ms-transition:;
-   -o-transition:;
-   transition: 0.5s linear;
+    transition: 0.5s linear;
 }

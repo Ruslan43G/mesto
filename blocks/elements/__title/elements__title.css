@@ -8,6 +8,6 @@
     margin: 23px 0 31px 21px;
     overflow: hidden;
     -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;     
 }

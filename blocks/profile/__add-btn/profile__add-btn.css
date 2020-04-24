@@ -8,13 +8,13 @@
     background-repeat: no-repeat;
     border: 2px solid #FFFFFF;
     -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     border-radius: 2px;
     -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
+    -ms-grid-row-align: center;
+    align-self: center;
     -ms-grid-column-align: right;
-        justify-self: right;
+    justify-self: right;
 }
 
 .profile__add-btn:hover {
