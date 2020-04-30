@@ -13,8 +13,6 @@ const popupCard = document.querySelector('.popup-card'); // находим в DO
 const cardPopupCloseBtn = document.querySelector('.popup-card__icon-close'); // находим в DOM кнопку закрытия попапа.
 const cardNameInput = document.querySelector('.popup-card__name'); // находим в DOM поле ввода назания карточки.
 const cardUrlInput = document.querySelector('.popup-card__about'); // находим в DOM поле ввода ссылки на кратинку.
-const cardImage = document.querySelector('.elements__img'); // Находим в DOM место для картинки в карточке.
-const cardName = document.querySelector('.elements__title'); // Находим в DOM место для названия карточки.
 const cardSavebtn = document.querySelector('.popup-card__button'); // Находим в DOM кнопку сохранения карточки.
 const formCardElement = document.querySelector('.popup-card__container'); // Находим в DOM форму попапа карточки.
 const popupImage = document.querySelector('.popup-img'); // попап с картинкой
@@ -48,6 +46,12 @@ const initialCards = [
     }
 ];
 
+// функция открытия и закрытия попапов.
+
+function toggleAnyPop (elem) {             // elem = необходимый попап.
+    elem.classList.toggle('popup_opened');  // удаление/добавление модификатора у нужного попапа.
+}
+
 // Функция создания новой карточки.
 
 
@@ -64,7 +68,7 @@ function addElement (item) {
     cardTitle.textContent = item.name; // Добавляем заголовок из массива
 
     cardImg.addEventListener('click', function() {
-        popupImage.classList.add('popup_opened');         // открываем попап с картинкой.  
+        toggleAnyPop(popupImage);         // открываем попап с картинкой.  
         popupImage.querySelector('.popup-img__image').src = item.link;  // добавляем URL картинки 
         popupImage.querySelector('.popup-img__text').textContent = item.name;  // добавляем заголовок    
     });
@@ -83,17 +87,7 @@ function addElement (item) {
 
 
 initialCards.forEach(addElement); // Загрузка первоначальных 6 карточек на страницу из исходного массива.
-
-
-// функция для открытия/закрытия попапа редактирования профиля.
-
-function popUpToggle() {
-    if (pop.classList.contains('popup_opened')) {  // проверка наличия модификатора
-        pop.classList.remove('popup_opened');      // удаляет при наличии
-    } else { 
-        pop.classList.add('popup_opened');         // добавляет при отсутсвии  
-    }
-}
+ 
 
 // Обработчик «отправки» формы редактирования профиля.
 function formSubmitHandler (evt) {
@@ -102,18 +96,9 @@ function formSubmitHandler (evt) {
     name.textContent = nameInput.value; // вставляем имя в профиль из формы ввода.
     job.textContent = jobInput.value; // вставляем профессию в профиль из формы ввода.
     
-    popUpToggle(); // Закрываем попап
-}
-
-// функция открытия и закрытия попапа добавления карточки.
-
-function cardPopupToggle() {
-    if (popupCard.classList.contains('popup_opened')) {  // проверка наличия модификатора
-        popupCard.classList.remove('popup_opened');      // удаляет при наличии
-    } else { 
-        popupCard.classList.add('popup_opened');         // добавляет при отсутсвии  
-    }
+    toggleAnyPop(pop); // Закрываем попап
 };
+
 
 // Функция создания добавления нового объекта в массив из формы добавления новой карточки.
 
@@ -123,25 +108,23 @@ function userAddElemnt (evt) {
     newCardData.name = cardNameInput.value; // Записываем в имя объекта название из поля ввода имени в форме.
     newCardData.link = cardUrlInput.value; // Записываем ссылку в объект из поля вводы ссылки в форме. 
     initialCards.push(newCardData); // вставляем объект в конец массива с карточками
-    addElement(initialCards[initialCards.length -1]); // вызываем функцию создания карточки
-    cardPopupToggle(); // вызываем функцию закрытия формы добавления карточки.
+    addElement(initialCards[initialCards.length -1]); // вызываем функцию создания карточки и вставляем данные из последнего объекта массива.
+    toggleAnyPop(popupCard); // вызываем функцию закрытия формы добавления карточки.
 };
 
 formElement.addEventListener('submit', formSubmitHandler); // слушатель события “submit” - «отправка» в форме редактирования профиля.
 
-popUp.addEventListener('click', popUpToggle); // ловим клик по кнопке редактирования и открываем popup
+popUp.addEventListener('click', () => toggleAnyPop(pop)); // ловим клик по кнопке редактирования и открываем popup
 
-popClose.addEventListener('click', popUpToggle); // ловим клик по кнопке закрытия попапа и закрываем его функцией     
+popClose.addEventListener('click', () => toggleAnyPop(pop)); // ловим клик по кнопке закрытия попапа и закрываем его функцией     
 
 formCardElement.addEventListener('submit', userAddElemnt); // навешиваем слушатель события сабмит на форму добавения карточки.
  
-cardBtn.addEventListener('click', cardPopupToggle); // Слушатель клика для кнопки добавить карточку в профиле пользователя.
+cardBtn.addEventListener('click', () => toggleAnyPop(popupCard)); // Слушатель клика для кнопки добавить карточку в профиле пользователя.
 
-cardPopupCloseBtn.addEventListener('click', cardPopupToggle); // Слушатель кника для кнопки закрытия попапа редактирования карточки.
+cardPopupCloseBtn.addEventListener('click', () => toggleAnyPop(popupCard)); // Слушатель кника для кнопки закрытия попапа редактирования карточки.
 
-popupImageCloseBtn.addEventListener('click', function() {
-    popupImage.classList.remove('popup_opened');      // Закрываем попап с картинкой
-});
+popupImageCloseBtn.addEventListener('click',  () => toggleAnyPop(popupImage)); //  Слушатель клика для закрытия попапа с картинкой по кнопке закрыть.
 
 
 
