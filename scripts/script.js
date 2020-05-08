@@ -126,6 +126,9 @@ cardPopupCloseBtn.addEventListener('click', () => toggleAnyPop(popupCard)); // �
 
 popupImageCloseBtn.addEventListener('click',  () => toggleAnyPop(popupImage)); //  Слушатель клика для закрытия попапа с картинкой по кнопке закрыть.
 
+проверка работы репозитория после переустанвки системы.
+
+
 
 
 
