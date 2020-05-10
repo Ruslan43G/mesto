@@ -52,41 +52,70 @@ function toggleAnyPop (elem) {             // elem = необходимый по
     elem.classList.toggle('popup_opened');  // удаление/добавление модификатора у нужного попапа.
 }
 
+// Функция для просмотра картинки в попапе.
+
+function zoomCardImage (evt) {
+    toggleAnyPop(popupImage);         // открываем попап с картинкой.  
+    popupImage.querySelector('.popup-img__image').src = evt.target.src;  // добавляем URL картинки 
+    popupImage.querySelector('.popup-img__text').textContent = evt.target.alt;  // добавляем заголовок    
+};
+
+// функция постановки лайка
+
+function toogleLike (evt) {             
+    evt.target.classList.toggle('elements__like_active');  // добавляем или удалем модификатор 
+};
+
+// функция удаления картчоки
+
+function cardDelete (evt) {               
+    evt.target.parentElement.removeEventListener('click', setEventListeners); // удаляем слушатель с карточки
+    evt.target.parentElement.remove();  // удаляем карточку
+};
+
+// функция устанавливает слушатель клика на карточку
+
+function setEventListeners (evt) {
+    if (evt.target.classList.contains('elements__like')) {   // лайк
+        toogleLike(evt);
+    };
+    if (evt.target.classList.contains('elements__img')) {   // попап с картинкой
+        zoomCardImage (evt);
+    };
+    if (evt.target.classList.contains('elements__trash')) {  // удаление
+        cardDelete (evt);
+    };
+};
+
+
 // Функция создания новой карточки.
 
 
-function addElement (item) {
+function addElement (link, name) {
     
     const template = document.querySelector('#template').content; // находим в DOM шаблон с карточкой.
     const elementsItem = template.cloneNode(true); // клонируем шаблон карточки.
+    const card = elementsItem.querySelector('.elements__item'); // находим карточку
     const cardDeleteBtn = elementsItem.querySelector('.elements__trash'); // Находим кнопку удалить
     const likeBtn = elementsItem.querySelector('.elements__like'); // Находим кнопку лайк.
     const cardImg = elementsItem.querySelector('.elements__img'); // выбрали картинку
     const cardTitle = elementsItem.querySelector('.elements__title'); // выбрали текст картинки
 
-    cardImg.src = item.link; // Добавляем ссылку на картинку из массива
-    cardTitle.textContent = item.name; // Добавляем заголовок из массива
+    cardImg.src = link; // Добавляем ссылку на картинку из массива
+    cardImg.alt = name; // Добавляем картинке атрибут ALT
+    cardTitle.textContent = name; // Добавляем заголовок из массива
 
-    cardImg.addEventListener('click', function() {
-        toggleAnyPop(popupImage);         // открываем попап с картинкой.  
-        popupImage.querySelector('.popup-img__image').src = item.link;  // добавляем URL картинки 
-        popupImage.querySelector('.popup-img__text').textContent = item.name;  // добавляем заголовок    
-    });
-
-    cardDeleteBtn.addEventListener('click', function(evt) {               // Добавляем кнопке удаления слушатель с функцией удаления карточки
-        evt.target.parentElement.remove();  
-   });
-           
-   likeBtn.addEventListener('click', function(evt) {             // Добавляем кнопке лайк слушатель с функцией постановки лайка.
-       evt.target.classList.toggle('elements__like_active');
-   });
-        
-    elements.prepend(elementsItem); // выводим на страницу новую карточку.
-            
+    card.addEventListener('click', setEventListeners); // устанавливаем слушатель событий на карточку
+   
+    return elementsItem;  // возвращаем разметку карточки
+             
 };
 
+// Загрузка первоначальных 6 карточек на страницу из исходного массива.
 
-initialCards.forEach(addElement); // Загрузка первоначальных 6 карточек на страницу из исходного массива.
+initialCards.forEach(function (item) {
+    elements.append(addElement(item.link, item.name)); 
+}); 
  
 
 // Обработчик «отправки» формы редактирования профиля.
@@ -108,7 +137,7 @@ function userAddElemnt (evt) {
     newCardData.name = cardNameInput.value; // Записываем в имя объекта название из поля ввода имени в форме.
     newCardData.link = cardUrlInput.value; // Записываем ссылку в объект из поля вводы ссылки в форме. 
     initialCards.push(newCardData); // вставляем объект в конец массива с карточками
-    addElement(initialCards[initialCards.length -1]); // вызываем функцию создания карточки и вставляем данные из последнего объекта массива.
+    elements.prepend(addElement(initialCards[initialCards.length -1].link, initialCards[initialCards.length -1].name)); // вызываем функцию создания карточки и вставляем данные из последнего объекта массива.
     toggleAnyPop(popupCard); // вызываем функцию закрытия формы добавления карточки.
 };
 
@@ -125,9 +154,6 @@ cardBtn.addEventListener('click', () => toggleAnyPop(popupCard)); // Слуша�
 cardPopupCloseBtn.addEventListener('click', () => toggleAnyPop(popupCard)); // Слушатель кника для кнопки закрытия попапа редактирования карточки.
 
 popupImageCloseBtn.addEventListener('click',  () => toggleAnyPop(popupImage)); //  Слушатель клика для закрытия попапа с картинкой по кнопке закрыть.
-
-проверка работы репозитория после переустанвки системы.
-
 
 
 
