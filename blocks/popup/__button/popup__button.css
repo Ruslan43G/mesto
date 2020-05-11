@@ -9,8 +9,9 @@
     border: none;
     margin-bottom: 36px;
     margin-left: 36px;
-    margin-top: 48px;
+    margin-top: ;
     outline: none;
+    padding: 0;
 }
 
 .popup__button:hover {
@@ -20,6 +21,8 @@
 
 @media screen and (max-width: 500px) {
     .popup__button {
-        max-width: 50vw;
+        max-width: 64vw;
+        min-height: 40px;
+        margin-left: 20px;
     }
 }

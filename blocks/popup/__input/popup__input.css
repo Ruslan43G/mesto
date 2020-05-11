@@ -1,4 +1,4 @@
-.popup-card__name {
+.popup__input {
     width: 358px;
     height: 27.26px;
     border: none;
@@ -7,10 +7,15 @@
     outline: none;
 }
 
+.popup__input:nth-of-type(even) {
+    margin-top: ;
+} 
+
 @media screen and (max-width: 500px) {
-    .popup-card__name{
-        max-width: 50vw;
+    .popup__input{
+        max-width: 64vw;
         font-size: 12px;
         line-height: 15px;
+        margin-left: 20px;
     }
 }

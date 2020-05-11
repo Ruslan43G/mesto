@@ -37,42 +37,47 @@
        </footer>
        <!--POPUP редактирования профиля-->
        <section class="popup">
-            <form class="popup__container">
+            <form class="popup__container" id="profile-form" novalidate>
                 <button class="popup__icon-close" type="button"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
-                <input class="popup__name" type="text" placeholder="Имя" >
-                <input class="popup__about" type="text" placeholder="О себе">
-                <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
+                <input class="popup__input" id="profile-input-name" type="text" placeholder="Имя" minlength="2" maxlength="40" pattern="^[А-Яа-яЁёA-Za-z\s]+$" required>
+                <span  id="profile-input-name-error"></span>
+                <input class="popup__input" id="profile-input-about" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
+                <span  id="profile-input-about-error"></span>
+                <button class="popup__button" id="profile-save-button" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
         </section>
         <!--POPUP добавления карточки-->
-       <section class="popup-card">
-        <form class="popup-card__container">
-            <button class="popup-card__icon-close" type="button"></button>
-            <h3 class="popup-card__title">Новое место</h3>
-            <input class="popup-card__name" type="text" placeholder="Название" >
-            <input class="popup-card__about" type="url" placeholder="Ссылка на картинку">
-            <button class="popup-card__button" type="submit" aria-label="Создать">Создать</button>
+       <section class="popup popup_card">
+        <form class="popup__container" id="card-form" novalidate>
+            <button class="popup__icon-close" id="close-add-popap" type="button"></button>
+            <h3 class="popup__title">Новое место</h3>
+            <input class="popup__input" id="card-name-input" type="text" placeholder="Название" minlength="1" maxlength="30" required>
+            <span  id="card-name-input-error"></span>
+            <input class="popup__input" id="card-url-input" type="url" placeholder="Ссылка на картинку"  required>
+            <span  id="card-url-input-error"></span>
+            <button class="popup__button" id="card-add-button" type="submit" aria-label="Создать">Создать</button>
         </form>
         </section>
          <!--POPUP с картинкой-->
-        <section class="popup-img">
-           <div class="popup-img__container">
-                <button class="popup-img__icon-close" type="button"></button>
-                <img class="popup-img__image" src="https://pbs.twimg.com/media/EFXlbrpXoAALbeH.png:large" alt="изображение карточки">
-                <p class="popup-img__text"></p>
+        <section class="popup popup_image">
+           <div class="popup__image-container">
+                <button class="popup__icon-close popup__icon-close_image" id="close-img-popup" type="button"></button>
+                <img class="popup__image" src="#" alt="изображение карточки">
+                <p class="popup__img-text"></p>
             </div>
         </section>    
     </div>
 <!--ШАБЛОН ДЛЯ ДОБАВЛЕНИЯ КАРТОЧКИ-->
 <template id="template">
     <div class="elements__item">
-        <img class="elements__img" src="https://pbs.twimg.com/media/EFXlbrpXoAALbeH.png:large" alt="изображение города">
+        <img class="elements__img" src="#" alt="изображение города">
         <button class="elements__trash" type="button"></button>
         <h3 class="elements__title"></h3>
         <button class="elements__like" type="button"></button>
      </div>    
 </template>    
-<script src="./scripts/script.js"></script>    
+<script src="./scripts/index.js"></script>
+<script src="./scripts/validate.js"></script>     
 </body>
 </html>
