@@ -69,14 +69,16 @@ function errorClean (elem) {
 // функция добавляет слушатели на попап
 
 function addPopupCloseListener (elem) {
+
     document.addEventListener('keydown', function (evt) {  // слушаетль нажатия клавиши esc
         if (evt.key === 'Escape') {
             elem.classList.remove('popup_opened');    
         }
     });
-    elem.addEventListener('click', (evt) => {
+
+    elem.addEventListener('click', (evt) => {             // слушатель закрытия по клику по оверлею
         if (evt.target.classList.contains('popup')) {
-            closeAnyPop (elem);
+            closeAnyPop(elem);  
         }
     });
 }
