@@ -12,11 +12,14 @@ const popupCard = document.querySelector('.popup_card'); // находим в DO
 const cardPopupCloseBtn = document.querySelector('#close-add-popap'); // находим в DOM кнопку закрытия попапа.
 const cardNameInput = document.querySelector('#card-name-input'); // находим в DOM поле ввода назания карточки.
 const cardUrlInput = document.querySelector('#card-url-input'); // находим в DOM поле ввода ссылки на кратинку.
-const cardSavebtn = document.querySelector('#card-add-button'); // Находим в DOM кнопку сохранения карточки.
 const formCardElement = document.querySelector('#card-form'); // Находим в DOM форму попапа карточки.
 const popupImage = document.querySelector('.popup_image'); // попап с картинкой
+const imageBig = document.querySelector('.popup__image'); // увеличенная картинка в попапе
+const imageCaption = document.querySelector('.popup__img-text'); // подпись к картинке в попапе
 const popupImageCloseBtn = document.querySelector('#close-img-popup'); // кнопка закрытия попапа с картинкой.
-const popupOverlay = document.querySelectorAll('.popup'); // оверлей попапов
+const template = document.querySelector('#template').content; // находим в DOM шаблон с карточкой.
+const forms = document.querySelectorAll('.popup_container'); // формы
+const inputForm = document.querySelectorAll('.popup__input');
 
 // Массив с данными для карточки при загрузке.
 const initialCards = [
@@ -46,16 +49,37 @@ const initialCards = [
     }
 ];
 
-// функция открытия попапов
+// функция обнуления ошибок
 
-function openAnyPop (elem) {             // elem = необходимый попап.
-    elem.classList.add('popup_opened');  // удаление/добавление модификатора у нужного попапа.
+function errorClean (elem) {
+
+    const errorInput = Array.from(elem.querySelectorAll('.popup__input'));
+    const errorSpan = Array.from(elem.querySelectorAll('span'));
+
+    errorSpan.forEach((span) => {
+        span.classList.remove('popup__error_visible');
+        span.textContent = '';
+    })
+    
+    errorInput.forEach((input) => {
+        input.classList.remove('popup__input_type_error');
+    });
+};
+
+// функция добавляет слушатели на попап
+
+function addPopupCloseListener (elem) {
     document.addEventListener('keydown', function (evt) {  // слушаетль нажатия клавиши esc
         if (evt.key === 'Escape') {
             elem.classList.remove('popup_opened');    
         }
-    });   
-};
+    });
+    elem.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup')) {
+            closeAnyPop (elem);
+        }
+    });
+}
 
 // функция закрытия попапов
 
@@ -65,16 +89,27 @@ function closeAnyPop (elem) {             // elem = необходимый по�
         if (evt.key === 'Escape') {
             elem.classList.remove('popup_opened');    
         }
-    });   
+    });    
+};
+
+// функция открытия попапов
+
+function openAnyPop (elem) {             // elem = необходимый попап.
+    elem.classList.add('popup_opened');  // удаление/добавление модификатора у нужного попапа.
+
+    addPopupCloseListener (elem);
+
+    errorClean (elem);
+
 };
 
 
 // Функция для просмотра картинки в попапе.
 
-function zoomCardImage (evt) {
-    openAnyPop(popupImage);         // открываем попап с картинкой.  
-    popupImage.querySelector('.popup__image').src = evt.target.src;  // добавляем URL картинки 
-    popupImage.querySelector('.popup__img-text').textContent = evt.target.alt;  // добавляем заголовок    
+function zoomCardImage (evt) {  
+    imageBig.src = evt.target.src;  // добавляем URL картинки 
+    imageCaption.textContent = evt.target.alt;  // добавляем заголовок    
+    openAnyPop(popupImage);         // открываем попап с картинкой.
 };
 
 // функция постановки лайка
@@ -86,8 +121,8 @@ function toggleLike (evt) {
 // функция удаления картчоки
 
 function cardDelete (evt) {               
-    evt.target.parentElement.removeEventListener('click', setEventListeners); // удаляем слушатель с карточки
-    evt.target.parentElement.remove();  // удаляем карточку
+    evt.target.closest('.elements__item').removeEventListener('click', setEventListeners); // удаляем слушатель с карточки
+    evt.target.closest('.elements__item').remove();  // удаляем карточку
 };
 
 // функция устанавливает слушатель клика на карточку
@@ -110,7 +145,6 @@ function setEventListeners (evt) {
 
 function addElement (link, name) {
     
-    const template = document.querySelector('#template').content; // находим в DOM шаблон с карточкой.
     const elementsItem = template.cloneNode(true); // клонируем шаблон карточки.
     const card = elementsItem.querySelector('.elements__item'); // находим карточку
     const cardImg = elementsItem.querySelector('.elements__img'); // выбрали картинку
@@ -126,12 +160,11 @@ function addElement (link, name) {
              
 };
 
-// Загрузка первоначальных 6 карточек на страницу из исходного массива.
+// Функция загрузки первоначальных 6 карточек на страницу из исходного массива.
+function render () {
+    initialCards.forEach(({link, name}) => elements.append(addElement(link, name)));
+}    
 
-initialCards.forEach(function (item) {
-    elements.append(addElement(item.link, item.name)); 
-}); 
- 
 
 // Обработчик «отправки» формы редактирования профиля.
 function formSubmitHandler (evt) {
@@ -157,10 +190,17 @@ function userAddElemnt (evt) {
 
 formElement.addEventListener('submit', formSubmitHandler); // слушатель события “submit” - «отправка» в форме редактирования профиля.
 
-popUp.addEventListener('click', () => openAnyPop(pop)); // ловим клик по кнопке редактирования и открываем popup
+popUp.addEventListener('click', () => {       // ловим клик по кнопке редактирования профиля
 
-popClose.addEventListener('click',() => closeAnyPop(pop));  // ловим клик по кнопке закрытия попапа и закрываем его функцией
+    nameInput.value = name.textContent;         // записываем данные со страницы
+    jobInput.value = job.textContent;
     
+    openAnyPop(pop);                             // открываем попап
+
+}); 
+
+popClose.addEventListener('click', () => closeAnyPop(pop));  // ловим клик по кнопке закрытия попапа и закрываем его функцией
+
 formCardElement.addEventListener('submit', userAddElemnt); // навешиваем слушатель события сабмит на форму добавения карточки.
  
 cardBtn.addEventListener('click', () => openAnyPop(popupCard)); // Слушатель клика для кнопки добавить карточку в профиле пользователя.
@@ -169,9 +209,4 @@ cardPopupCloseBtn.addEventListener('click', () => closeAnyPop(popupCard)); // С
 
 popupImageCloseBtn.addEventListener('click',  () => closeAnyPop(popupImage)); //  Слушатель клика для закрытия попапа с картинкой по кнопке закрыть.
 
-popupOverlay.forEach(element => {
-    element.addEventListener('click', (evt) => {                // слушатель клика на оверлеи попапов с функцией закрытия
-         evt.target.classList.remove('popup_opened');   
-    });
-});
-
+render (); // вызываем функцию загрузки изначальных карточек

@@ -9,7 +9,6 @@
     border: none;
     margin-bottom: 36px;
     margin-left: 36px;
-    margin-top: ;
     outline: none;
     padding: 0;
 }
@@ -24,5 +23,7 @@
         max-width: 64vw;
         min-height: 40px;
         margin-left: 20px;
+        margin-top: 5px;
+    
     }
 }

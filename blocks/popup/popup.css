@@ -26,6 +26,12 @@
    visibility: hidden;
    opacity: 0;
    transition: visibility 0s, opacity 0.5s linear;
+   -webkit-transition: visibility 0s, opacity 0.5s linear;
+   -o-transition: visibility 0s, opacity 0.5s linear;
+   transition: visibility 0s, opacity 0.5s linear;
+   transition: 0.5s linear;
+   -webkit-transition: 0.5s linear;
+   -o-transition: 0.5s linear;
    transition: 0.5s linear;
 }
 
