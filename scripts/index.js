@@ -18,8 +18,8 @@ const imageBig = document.querySelector('.popup__image'); // увеличенн�
 const imageCaption = document.querySelector('.popup__img-text'); // подпись к картинке в попапе
 const popupImageCloseBtn = document.querySelector('#close-img-popup'); // кнопка закрытия попапа с картинкой.
 const template = document.querySelector('#template').content; // находим в DOM шаблон с карточкой.
-const forms = document.querySelectorAll('.popup_container'); // формы
-const inputForm = document.querySelectorAll('.popup__input');
+const formInput = Array.from(document.querySelectorAll('.popup__input')); // создаем массив инпутов 
+const errorSpan = Array.from(document.querySelectorAll('.popup__error')); // создаём массив спанов с ошибкой
 
 // Массив с данными для карточки при загрузке.
 const initialCards = [
@@ -53,17 +53,25 @@ const initialCards = [
 
 function errorClean (elem) {
 
-    const errorInput = Array.from(elem.querySelectorAll('.popup__input'));
-    const errorSpan = Array.from(elem.querySelectorAll('span'));
-
     errorSpan.forEach((span) => {
-        span.classList.remove('popup__error_visible');
+        span.classList.remove('popup__error_visible');         // удаляем со спанов кмодификатор с ошибкой
         span.textContent = '';
     })
     
-    errorInput.forEach((input) => {
-        input.classList.remove('popup__input_type_error');
+    formInput.forEach((input) => {
+        input.classList.remove('popup__input_type_error');    // удаляем с инпутов модификатор с ошибкой
     });
+};
+
+// функция закрытия попапов
+
+function closeAnyPop (elem) {             // elem = необходимый попап.
+    elem.classList.remove('popup_opened');  // удаление/добавление модификатора у нужного попапа.
+    document.removeEventListener('keydown', function (evt) {  // слушаетль нажатия клавиши esc
+        if (evt.key === 'Escape') {
+            elem.classList.remove('popup_opened');    
+        }
+    });    
 };
 
 // функция добавляет слушатели на попап
@@ -83,16 +91,6 @@ function addPopupCloseListener (elem) {
     });
 }
 
-// функция закрытия попапов
-
-function closeAnyPop (elem) {             // elem = необходимый попап.
-    elem.classList.remove('popup_opened');  // удаление/добавление модификатора у нужного попапа.
-    document.removeEventListener('keydown', function (evt) {  // слушаетль нажатия клавиши esc
-        if (evt.key === 'Escape') {
-            elem.classList.remove('popup_opened');    
-        }
-    });    
-};
 
 // функция открытия попапов
 
@@ -123,13 +121,13 @@ function toggleLike (evt) {
 // функция удаления картчоки
 
 function cardDelete (evt) {               
-    evt.target.closest('.elements__item').removeEventListener('click', setEventListeners); // удаляем слушатель с карточки
+    evt.target.closest('.elements__item').removeEventListener('click', cardClickHandler); // удаляем слушатель с карточки
     evt.target.closest('.elements__item').remove();  // удаляем карточку
 };
 
 // функция устанавливает слушатель клика на карточку
 
-function setEventListeners (evt) {
+function cardClickHandler (evt) {
     if (evt.target.classList.contains('elements__like')) {   // лайк
         toggleLike(evt);
     };
@@ -156,7 +154,7 @@ function addElement (link, name) {
     cardImg.alt = name; // Добавляем картинке атрибут ALT
     cardTitle.textContent = name; // Добавляем заголовок
 
-    card.addEventListener('click', setEventListeners); // устанавливаем слушатель событий на карточку
+    card.addEventListener('click', cardClickHandler); // устанавливаем слушатель событий на карточку
    
     return elementsItem;  // возвращаем разметку карточки
              

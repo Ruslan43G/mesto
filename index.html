@@ -41,9 +41,9 @@
                 <button class="popup__icon-close" type="reset"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <input class="popup__input" id="profile-input-name" type="text" placeholder="Имя" minlength="2" maxlength="40" pattern="^[А-Яа-яЁёA-Za-z\s]+$" required>
-                <span  id="profile-input-name-error"></span>
+                <span class="popup__error" id="profile-input-name-error"></span>
                 <input class="popup__input" id="profile-input-about" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
-                <span  id="profile-input-about-error"></span>
+                <span class="popup__error" id="profile-input-about-error"></span>
                 <button class="popup__button" id="profile-save-button" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
         </section>
@@ -53,9 +53,9 @@
             <button class="popup__icon-close" id="close-add-popap" type="reset"></button>
             <h3 class="popup__title">Новое место</h3>
             <input class="popup__input" id="card-name-input" type="text" placeholder="Название" minlength="1" maxlength="30" required>
-            <span  id="card-name-input-error"></span>
+            <span class="popup__error" id="card-name-input-error"></span>
             <input class="popup__input" id="card-url-input" type="url" placeholder="Ссылка на картинку"  required>
-            <span  id="card-url-input-error"></span>
+            <span class="popup__error" id="card-url-input-error"></span>
             <button class="popup__button" id="card-add-button" type="submit" aria-label="Создать">Создать</button>
         </form>
         </section>
