@@ -21,6 +21,7 @@ const template = document.querySelector('#template').content; // находим 
 const formInput = Array.from(document.querySelectorAll('.popup__input')); // создаем массив инпутов 
 const errorSpan = Array.from(document.querySelectorAll('.popup__error')); // создаём массив спанов с ошибкой
 
+
 // Массив с данными для карточки при загрузке.
 const initialCards = [
     {
@@ -52,6 +53,7 @@ const initialCards = [
 // функция обнуления ошибок
 
 function errorClean (elem) {
+    const formButton = elem.querySelector('.popup__button');
 
     errorSpan.forEach((span) => {
         span.classList.remove('popup__error_visible');         // удаляем со спанов кмодификатор с ошибкой
@@ -61,17 +63,16 @@ function errorClean (elem) {
     formInput.forEach((input) => {
         input.classList.remove('popup__input_type_error');    // удаляем с инпутов модификатор с ошибкой
     });
+
+    formButton.disabled = true;                               // возвращаем кнопку в дефолтное состояние
+    formButton.classList.add('popup__button_disabled');
 };
 
 // функция закрытия попапов
 
 function closeAnyPop (elem) {             // elem = необходимый попап.
     elem.classList.remove('popup_opened');  // удаление/добавление модификатора у нужного попапа.
-    document.removeEventListener('keydown', function (evt) {  // слушаетль нажатия клавиши esc
-        if (evt.key === 'Escape') {
-            elem.classList.remove('popup_opened');    
-        }
-    });    
+       
 };
 
 // функция добавляет слушатели на попап
@@ -82,7 +83,7 @@ function addPopupCloseListener (elem) {
         if (evt.key === 'Escape') {
             elem.classList.remove('popup_opened');    
         }
-    });
+    }, {once: true});
 
     elem.addEventListener('click', (evt) => {             // слушатель закрытия по клику по оверлею
         if (evt.target.classList.contains('popup')) {
@@ -100,7 +101,6 @@ function openAnyPop (elem) {             // elem = необходимый поп
     addPopupCloseListener (elem);
 
     errorClean (elem);
-
 };
 
 
