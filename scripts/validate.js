@@ -18,11 +18,11 @@ function hideInputError ({inputErrorClass, errorClass}, formElement, inputElemen
 
 // функция проверяет корректность введеных данных
 
-function checkInputValidity ({inputErrorClass, errorClass}, formElement, inputElement) {
+function checkInputValidity (selectors, formElement, inputElement) {
     if(!inputElement.validity.valid) {                                                        // если поле ввода не валидно
-        showInputError({inputErrorClass, errorClass}, formElement, inputElement, inputElement.validationMessage);       // выводим функцию показа ошибки
+        showInputError(selectors, formElement, inputElement, inputElement.validationMessage);       // выводим функцию показа ошибки
     } else {                                                                                  // если валидно
-        hideInputError({inputErrorClass, errorClass}, formElement, inputElement);                                       // выводим функцию спрятать ошибку
+        hideInputError(selectors, formElement, inputElement);                                       // выводим функцию спрятать ошибку
     };
 };
 
