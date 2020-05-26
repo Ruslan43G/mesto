@@ -2,7 +2,6 @@ export class FormValidator {
 
     constructor (data, element) {
 
-        this._formSelecor = data.formSelector;
         this._inputSelector = data.inputSelector;
         this._submitButtonSelector = data.submitButtonSelector;
         this._inactiveButtonClass = data.inactiveButtonClass;
@@ -70,7 +69,7 @@ export class FormValidator {
         this._toggleButtonState(inputList, buttonElement);                               // выключаем кнопку
 
         inputList.forEach((inputElement) => {                                            // проходим по массиву инпутов
-            inputElement.addEventListener('input', function () {                         // каждому добавляем слушатель ввода
+            inputElement.addEventListener('input', () => {                         // каждому добавляем слушатель ввода
                 this._checkInputValidity (formElement, inputElement);                    // функцию проверки игпутов и вывода ошибки 
                 this._toggleButtonState (inputList, buttonElement);                      // выключение кнопки
             });
@@ -81,9 +80,9 @@ export class FormValidator {
 
     enableValidation () {
     
-        const form = document.querySelector(`#${this._element}`);          // получаем массив форм
+        const form = document.querySelector(`#${this._element}`);          // получаем форму
         
-        this._setFormEventListeners(form);
+        this._setFormEventListeners(form);                                 // вызываем метод на форму
         
 
     };

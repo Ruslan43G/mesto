@@ -17,7 +17,7 @@ const formCardElement = document.querySelector('#card-form'); // Находим 
 export const popupImage = document.querySelector('.popup_image'); // попап с картинкой
 const formInput = Array.from(document.querySelectorAll('.popup__input')); // создаем массив инпутов 
 const errorSpan = Array.from(document.querySelectorAll('.popup__error')); // создаём массив спанов с ошибкой
-const popups = Array.from(document.querySelectorAll('.popup'));
+const popups = Array.from(document.querySelectorAll('.popup')); // массив попапов
 
 
 // Массив с данными для карточки при загрузке.
@@ -118,15 +118,15 @@ export function openAnyPop (elem) {             // elem = необходимый
     
     elem.classList.add('popup_opened');  // удаление/добавление модификатора у нужного попапа.
 
-    addPopupCloseListener (elem);
+    addPopupCloseListener (elem);   // установка слушателей закрытия попапов
 
-    errorClean (elem);
+    errorClean (elem);    // очистка ошибок формы
     
 
-    if (elem !== popupImage) {
-        const form = elem.querySelector('form');
+    if (elem !== popupImage) {                         // если попап не попап с картинкой, то
+        const form = elem.querySelector('form');       // получаем форму в попапе      
         
-        const valid = new FormValidator({
+        const valid = new FormValidator({              // создаем экземпляр клааса с валидацией
             formSelector: '.popup__container',
             inputSelector: '.popup__input',
             submitButtonSelector: '.popup__button',
@@ -135,7 +135,7 @@ export function openAnyPop (elem) {             // elem = необходимый
             errorClass: 'popup__error_visible'
         }, form.id);
 
-        valid.enableValidation();
+        valid.enableValidation();                    // вызываем в эеземпляре метод с запуском процесса валидации
     }
 };
 
@@ -164,10 +164,10 @@ function formSubmitHandler (evt) {
 
 function userAddElemnt (evt) {
     evt.preventDefault();   // отменяем стандартный сабмит для формы.
-    const obj = {}
-    obj.link = cardUrlInput.value;
-    obj.name = cardNameInput.value;
-    const card = new Card(obj, '#template');
+    const obj = {}  // создаём новый объект
+    obj.link = cardUrlInput.value;  // записываем в объект ключ link со значением из поля ввода ссылки на картинку
+    obj.name = cardNameInput.value; // записываем в объект ключ name со значением из поля ввода названия карточки
+    const card = new Card(obj, '#template');  // создаем экземпляр класса Card 
     elements.prepend(card.generateCard()); // вызываем функцию создания карточки, вставляем данные из формы и выводим на странцу.
     closeAnyPop(popupCard); // вызываем функцию закрытия формы добавления карточки.
 };

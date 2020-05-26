@@ -69,13 +69,13 @@ export class Card {                                                             
     // метод наполняет карточку данными
 
     generateCard() {
-        this._getCardTemplate();
-        this._setCardEventListeners();
+        this._getCardTemplate();                                      // получаем разметку
+        this._setCardEventListeners();                                // устанавливаем слушатели
+ 
+        this._element.querySelector('.elements__img').src = this._link;  // вставляем картинку
+        this._element.querySelector('.elements__img').alt = this._name;  // устанавливаем значение атрибута alt
+        this._element.querySelector('.elements__title').textContent = this._name; // вставляем название
 
-        this._element.querySelector('.elements__img').src = this._link;
-        this._element.querySelector('.elements__img').alt = this._name;
-        this._element.querySelector('.elements__title').textContent = this._name;
-
-        return this._element;
+        return this._element;    // возвращаем готовую карточку
     }
 }
