@@ -100,12 +100,14 @@ function popupEventHandler (evt) {
     if (evt.target.classList.contains('popup__icon-close')) {   // если клик по кнопке закрыть
         closeAnyPop(evt.target.closest('.popup'));
     }
+
 };
+
 // функци добавленя слушателей на попап
 
 function addPopupCloseListener (elem) {
 
-    document.addEventListener('keydown', escHandler);   // устанавливаем слущшатель esc
+    document.addEventListener('keydown', escHandler);   // устанавливаем слушатель esc
 
     elem.addEventListener('click', popupEventHandler);  // устанавливаем слушатель кликов
 }
