@@ -1,3 +1,6 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js'
+
 const popUp = document.querySelector('.profile__edit-btn'); // выбираем кнопку редактировать в профиле
 const pop = document.querySelector('.popup'); // выбираем блок poup для редактирования профиля
 const nameInput = document.querySelector('#profile-input-name'); // выбираем форму ввода имени в попапе редактирования профиля
@@ -11,10 +14,7 @@ const popupCard = document.querySelector('.popup_card'); // находим в DO
 const cardNameInput = document.querySelector('#card-name-input'); // находим в DOM поле ввода назания карточки.
 const cardUrlInput = document.querySelector('#card-url-input'); // находим в DOM поле ввода ссылки на кратинку.
 const formCardElement = document.querySelector('#card-form'); // Находим в DOM форму попапа карточки.
-const popupImage = document.querySelector('.popup_image'); // попап с картинкой
-const imageBig = document.querySelector('.popup__image'); // увеличенная картинка в попапе
-const imageCaption = document.querySelector('.popup__img-text'); // подпись к картинке в попапе
-const template = document.querySelector('#template').content; // находим в DOM шаблон с карточкой.
+export const popupImage = document.querySelector('.popup_image'); // попап с картинкой
 const formInput = Array.from(document.querySelectorAll('.popup__input')); // создаем массив инпутов 
 const errorSpan = Array.from(document.querySelectorAll('.popup__error')); // создаём массив спанов с ошибкой
 const popups = Array.from(document.querySelectorAll('.popup'));
@@ -114,75 +114,38 @@ function addPopupCloseListener (elem) {
 
 // функция открытия попапов
 
-function openAnyPop (elem) {             // elem = необходимый попап.
+export function openAnyPop (elem) {             // elem = необходимый попап.
     
     elem.classList.add('popup_opened');  // удаление/добавление модификатора у нужного попапа.
 
     addPopupCloseListener (elem);
 
     errorClean (elem);
-};
-
-
-// Функция для просмотра картинки в попапе.
-
-function zoomCardImage (evt) {  
-    imageBig.src = evt.target.src;  // добавляем URL картинки 
-    imageCaption.textContent = evt.target.alt;  // добавляем заголовок    
-    openAnyPop(popupImage);         // открываем попап с картинкой.
-};
-
-// функция постановки лайка
-
-function toggleLike (evt) {             
-    evt.target.classList.toggle('elements__like_active');  // добавляем или удалем модификатор 
-};
-
-// функция удаления картчоки
-
-function cardDelete (evt) {               
-    evt.target.closest('.elements__item').removeEventListener('click', cardClickHandler); // удаляем слушатель с карточки
-    evt.target.closest('.elements__item').remove();  // удаляем карточку
-};
-
-// функция устанавливает слушатель клика на карточку
-
-function cardClickHandler (evt) {
-    if (evt.target.classList.contains('elements__like')) {   // лайк
-        toggleLike(evt);
-    };
-    if (evt.target.classList.contains('elements__img')) {   // попап с картинкой
-        zoomCardImage (evt);
-    };
-    if (evt.target.classList.contains('elements__trash')) {  // удаление
-        cardDelete (evt);
-    };
-};
-
-
-// Функция создания новой карточки.
-
-
-function addElement (link, name) {
     
-    const elementsItem = template.cloneNode(true); // клонируем шаблон карточки.
-    const card = elementsItem.querySelector('.elements__item'); // находим карточку
-    const cardImg = elementsItem.querySelector('.elements__img'); // выбрали картинку
-    const cardTitle = elementsItem.querySelector('.elements__title'); // выбрали текст картинки
 
-    cardImg.src = link; // Добавляем ссылку на картинку 
-    cardImg.alt = name; // Добавляем картинке атрибут ALT
-    cardTitle.textContent = name; // Добавляем заголовок
+    if (elem !== popupImage) {
+        const form = elem.querySelector('form');
+        
+        const valid = new FormValidator({
+            formSelector: '.popup__container',
+            inputSelector: '.popup__input',
+            submitButtonSelector: '.popup__button',
+            inactiveButtonClass: 'popup__button_disabled',
+            inputErrorClass: 'popup__input_type_error',
+            errorClass: 'popup__error_visible'
+        }, form.id);
 
-    card.addEventListener('click', cardClickHandler); // устанавливаем слушатель событий на карточку
-   
-    return elementsItem;  // возвращаем разметку карточки
-             
+        valid.enableValidation();
+    }
 };
 
 // Функция загрузки первоначальных 6 карточек на страницу из исходного массива.
 function render () {
-    initialCards.forEach(({link, name}) => elements.append(addElement(link, name)));
+    
+    initialCards.forEach(({link, name}) => {
+       const card = new Card({link, name}, '#template');
+       elements.append(card.generateCard()); 
+    });
 }    
 
 
@@ -201,7 +164,11 @@ function formSubmitHandler (evt) {
 
 function userAddElemnt (evt) {
     evt.preventDefault();   // отменяем стандартный сабмит для формы.
-    elements.prepend(addElement(cardUrlInput.value, cardNameInput.value)); // вызываем функцию создания карточки, вставляем данные из формы и выводим на странцу.
+    const obj = {}
+    obj.link = cardUrlInput.value;
+    obj.name = cardNameInput.value;
+    const card = new Card(obj, '#template');
+    elements.prepend(card.generateCard()); // вызываем функцию создания карточки, вставляем данные из формы и выводим на странцу.
     closeAnyPop(popupCard); // вызываем функцию закрытия формы добавления карточки.
 };
 
