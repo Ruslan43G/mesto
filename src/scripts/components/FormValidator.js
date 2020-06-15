@@ -1,4 +1,5 @@
-export class FormValidator {
+export default class FormValidator {
+
     constructor (data, element) {
         this._inputSelector = data.inputSelector;
         this._submitButtonSelector = data.submitButtonSelector;
@@ -65,7 +66,9 @@ export class FormValidator {
     }
 
     // функция запускающая процесс валидации
-    enableValidation () {
+
+    enableValidation () {    
         this._setFormEventListeners(this._element);                                 // вызываем метод на форму
-    }
+    };
+
 }
