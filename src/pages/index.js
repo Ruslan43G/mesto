@@ -13,10 +13,11 @@ import {popUp,
     initialCards} from '../scripts/utils/constants.js';
 import {errorClean, launchFormValidation} from '../scripts/utils/functions.js';    
 
+//создаем экземпляр UserInfo 
+const userInfo = new UserInfo( {name: '.profile__name', job: '.profile__about'});
+
 // создаем экземпляр попапа для редактировать профиль
 const profilePopup = new PopupWithForm('.popup', (formData) => {
-    //создаем экземпляр UserInfo 
-    const userInfo = new UserInfo( {name: '.profile__name', job: '.profile__about'});
     //Записываем данные на страницу
     userInfo.setUserInfo(formData); 
 });
@@ -25,8 +26,6 @@ const profilePopup = new PopupWithForm('.popup', (formData) => {
 popUp.addEventListener('click', () => {
     //очищаем ошибки валидации в форме
     errorClean(formElement);
-    //создаем экземпляр UserInfo
-    const userInfo = new UserInfo( {name: '.profile__name', job: '.profile__about'});
     //получем объект с данными пользователя со страницы
     const userData = userInfo.getUserInfo();
     //записываем данные в форму попапа
