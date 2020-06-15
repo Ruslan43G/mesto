@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
 
     constructor (data, element) {
 
@@ -78,13 +78,8 @@ export class FormValidator {
 
     // функция запускающая процесс валидации
 
-    enableValidation () {
-    
-        const form = document.querySelector(`#${this._element}`);          // получаем форму
-        
-        this._setFormEventListeners(form);                                 // вызываем метод на форму
-        
-
+    enableValidation () {    
+        this._setFormEventListeners(this._element);                                 // вызываем метод на форму
     };
 
 }
