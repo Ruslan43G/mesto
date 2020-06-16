@@ -12,6 +12,8 @@ export default class Popup {
 
     close() {                                               // метод закрытия попапа
         this._popup.classList.remove('popup_opened');
+        this._popup.removeEventListener('click', this._click);
+        document.removeEventListener('keydown', this._handleEsc);
     }
 
     _handleEscClose(evt) {                                  
@@ -21,14 +23,18 @@ export default class Popup {
     }
 
     _setEventListeners() {                                  // метод установки слушателей на попап
-        this._popup.addEventListener('click', (evt) => {
-            if (evt.target === this._popup) {
-                this.close();
-            }
-            if (evt.target.classList.contains('popup__icon-close')) {
-                this.close();
-            }
-        })
-        document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
+        this._click = this._handlePopupClick.bind(this);
+        this._handleEsc = this._handleEscClose.bind(this);
+        this._popup.addEventListener('click', this._click);
+        document.addEventListener('keydown', this._handleEsc);
+    }
+
+    _handlePopupClick(evt) {
+        if (evt.target === this._popup) {
+            this.close();
+        }
+        if (evt.target.classList.contains('popup__icon-close')) {
+            this.close();
+        }
     }
 }
