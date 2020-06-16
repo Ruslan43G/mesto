@@ -25,6 +25,7 @@ export default class Card {                                                     
     // функция удаления картчоки
     _cardDelete (evt) {              
         evt.target.closest('.elements__item').remove();  // удаляем карточку
+        this._element.removeEventListener('click', this._cardHandler);
     };
 
     // функция определяет клики по карточке
@@ -43,7 +44,8 @@ export default class Card {                                                     
 
     // функция устанавливает слушатель на карточку
     _setCardEventListeners() {
-        this._element.addEventListener('click', (evt) => this._cardClickHandler(evt))
+        this._cardHandler = this._cardClickHandler.bind(this);
+        this._element.addEventListener('click', this._cardHandler);
     }
 
     // метод наполняет карточку данными
