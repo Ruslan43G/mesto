@@ -31,11 +31,11 @@ export default class Card {                                                     
     // функция определяет клики по карточке
     _cardClickHandler (evt) {
         if (evt.target.classList.contains('elements__like')) {   // лайк
-            this._toggleLike(evt)  // добавляем или удалем модификатор 
+            this._toggleLike(evt);  // добавляем или удалем модификатор 
         }
         if (evt.target.classList.contains('elements__img')) {   // попап с картинкой
             this._handleCardClick(evt);
-        };
+        }
 
         if (evt.target.classList.contains('elements__trash')) {  // удаление
             this._cardDelete(evt);

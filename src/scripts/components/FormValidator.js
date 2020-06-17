@@ -38,7 +38,7 @@ export default class FormValidator {
     _hasInvalidInput (inputList) {
         return inputList.some((inputElement) => {                                               // проходим все ипуты до первого невалидного
             return !inputElement.validity.valid;                                                // и возвращаем его
-        });
+        })
     }
 
     // функция включает и выключает кнопку отправить

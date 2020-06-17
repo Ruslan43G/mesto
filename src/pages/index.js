@@ -22,6 +22,16 @@ const profilePopup = new PopupWithForm('.popup', (formData) => {
     userInfo.setUserInfo(formData); 
 });
 
+//создаём экземпляр класса Section для отрисовки элементов.
+const sectionRender= new Section({
+    //запускаем функцию создния карточки 
+    renderer: ({link, name}) => {
+    //создаём экземпляр класса Card с данными из формы   
+    const card = new Card({link, name}, (evt) => imagePopup.open(evt), '#template');
+    //Вставляем карточку в контейнер
+    sectionRender.addItem(card.generateCard());
+}}, '.elements');
+
 // Ловим клик по кнопке редактирования профиля   
 popUp.addEventListener('click', () => {
     //очищаем ошибки валидации в форме
@@ -40,19 +50,8 @@ const imagePopup = new PopupWithImage('.popup_image');
 
 // создаём экземпляр попапа для добавленя картоки
 const addCardPopup = new PopupWithForm('.popup_card', (formData) => {
-    //создаём экземпляр класса Section
-    const userCard= new Section({
-        //передаём ему объект с данными из полей ввода формы
-        items: [formData],
-        //запускаем функцию создния карточки 
-        renderer: ({link, name}) => {
-        //создаём экземпляр класса Card с данными из формы   
-        const card = new Card({link, name}, (evt) => imagePopup.open(evt), '#template');
-        //Вставляем карточку в контейнер
-        userCard.addItem(card.generateCard());
-    }}, '.elements');
     //вызываем метод для отрисовкки карточек 
-    userCard.renderItems();
+    sectionRender.renderItems([formData]);
     //закрываем попап
     imagePopup.close();
 });
@@ -65,16 +64,8 @@ cardBtn.addEventListener('click', () => {
     addCardPopup.open();
 });
 
-// Функция загрузки первоначальных 6 карточек на страницу из исходного массива.
-const cardList = new Section({
-    items: initialCards, 
-    renderer: ({link, name}) => {
-    const card = new Card({link, name}, (evt) => imagePopup.open(evt), '#template');
-    cardList.addItem(card.generateCard());
-}}, '.elements');
-
 // Отрисовываем изначальные карточки
-cardList.renderItems();
+sectionRender.renderItems(initialCards);
 // вызываем функцию для запуска валидации на формах.
 launchFormValidation(); 
 

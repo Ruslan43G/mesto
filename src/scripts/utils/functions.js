@@ -10,7 +10,7 @@ function errorClean (elem) {
         })
         formInput.forEach((input) => {
             input.classList.remove('popup__input_type_error');    // удаляем с инпутов модификатор с ошибкой
-        });
+        })
         const formButton = elem.querySelector('.popup__button');
         formButton.disabled = true;                               // возвращаем кнопку в дефолтное состояние
         formButton.classList.add('popup__button_disabled');
