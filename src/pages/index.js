@@ -27,7 +27,7 @@ const sectionRender= new Section({
     //запускаем функцию создния карточки 
     renderer: ({link, name}) => {
     //создаём экземпляр класса Card с данными из формы   
-    const card = new Card({link, name}, (evt) => imagePopup.open(evt), '#template');
+    const card = new Card({link, name}, ({link, name}) => imagePopup.open({link, name}), '#template');
     //Вставляем карточку в контейнер
     sectionRender.addItem(card.generateCard());
 }}, '.elements');

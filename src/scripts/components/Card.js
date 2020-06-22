@@ -34,7 +34,7 @@ export default class Card {                                                     
             this._toggleLike(evt);  // добавляем или удалем модификатор 
         }
         if (evt.target.classList.contains('elements__img')) {   // попап с картинкой
-            this._handleCardClick(evt);
+            this._handleCardClick({link : this._link, name: this._name});
         }
 
         if (evt.target.classList.contains('elements__trash')) {  // удаление
