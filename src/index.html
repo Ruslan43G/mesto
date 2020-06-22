@@ -17,6 +17,7 @@
        <section class="profile">
            <!--АВАТАР -->
            <img class="profile__img" src="./images/profile/image.jpg" alt="автар пользователя">
+           <div class="profile__img-hover"></div>
            <!--ИНФОРМАЦИЯ О ПРОФИЛЕ-->
            <div class="profile__info">
                <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -38,12 +39,12 @@
        <section class="popup">
             <form class="popup__container" id="profile-form" novalidate>
                 <button class="popup__icon-close" type="button"></button>
-                <h3 class="popup__title">Редактировать профиль</h3>
+                <h3 class="popup__title popup__title_form">Редактировать профиль</h3>
                 <input class="popup__input" id="profile-input-name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" pattern="^[А-Яа-яЁёA-Za-z\s-]+$" required>
                 <span class="popup__error" id="profile-input-name-error"></span>
                 <input class="popup__input" id="profile-input-about" name="job" type="text" placeholder="О себе" minlength="2" maxlength="200" required>
                 <span class="popup__error" id="profile-input-about-error"></span>
-                <button class="popup__button" id="profile-save-button" type="submit" aria-label="Сохранить">Сохранить</button>
+                <button class="popup__button popup__button_form" id="profile-save-button" type="submit" aria-label="Сохранить">Сохранить</button>
             </form>
         </section>
         <!--POPUP добавления карточки-->
@@ -55,7 +56,7 @@
             <span class="popup__error" id="card-name-input-error"></span>
             <input class="popup__input" id="card-url-input" name="link" type="url" placeholder="Ссылка на картинку"  required>
             <span class="popup__error" id="card-url-input-error"></span>
-            <button class="popup__button" id="card-add-button" type="submit" aria-label="Создать">Создать</button>
+            <button class="popup__button popup__button_form" id="card-add-button" type="submit" aria-label="Создать">Создать</button>
         </form>
         </section>
          <!--POPUP с картинкой-->
@@ -65,7 +66,15 @@
                 <img class="popup__image" src="#" alt="изображение карточки">
                 <p class="popup__img-text"></p>
             </div>
-        </section>    
+        </section>
+         <!--POPUP удаления-->
+         <section class="popup popup_delete">
+            <div class="popup__delete-container">
+                <h3 class="popup__title popup__title_delete">Вы уверены?</h3>
+                <button class="popup__icon-close"  type="button"></button>
+                <button class="popup__button popup__button_delete" type="submit" aria-label="Да">Да</button>
+             </div>
+         </section>     
     </div>
 <!--ШАБЛОН ДЛЯ ДОБАВЛЕНИЯ КАРТОЧКИ-->
 <template id="template">
@@ -74,6 +83,7 @@
         <button class="elements__trash" type="button"></button>
         <h3 class="elements__title"></h3>
         <button class="elements__like" type="button"></button>
+        <p class="elements__like-counter">0</p>
      </div>    
 </template>    
 </body>
