@@ -1,4 +1,6 @@
 const popUp = document.querySelector('.profile__edit-btn'); // выбираем кнопку редактировать в профиле
+const name = document.querySelector('.profile__name');
+const job = document.querySelector('.profile__about');
 const nameInput = document.querySelector('#profile-input-name'); // выбираем форму ввода имени в попапе редактирования профиля
 const jobInput = document.querySelector('#profile-input-about'); // выбираем форму ввода о себе в попапе реадктирования профиля
 const formElement = document.querySelector('#profile-form'); // Находим форму редактирования профиля в DOM
@@ -8,6 +10,7 @@ const popupImage = document.querySelector('.popup_image'); // попап с ка
 const formInput = Array.from(document.querySelectorAll('.popup__input')); // создаем массив инпутов 
 const errorSpan = Array.from(document.querySelectorAll('.popup__error')); // создаём массив спанов с ошибкой
 const forms = Array.from(document.querySelectorAll('.popup__container')); // массив форм
+const editAvatar = document.querySelector('.profile__img-hover');
 // Массив с данными для карточки при загрузке.
 const initialCards = [
     {
@@ -36,4 +39,4 @@ const initialCards = [
     }
 ];
 
-export {popUp, nameInput, jobInput, formElement, cardBtn, formCardElement, popupImage, formInput, errorSpan, forms, initialCards};
+export {popUp, name, job, nameInput, jobInput, formElement, cardBtn, formCardElement, popupImage, formInput, errorSpan, forms, initialCards, editAvatar};

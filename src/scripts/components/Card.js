@@ -1,10 +1,16 @@
 export default class Card {                                                                       // создаём класс для карточки
 
-    constructor ({link, name}, handleCardClick, selector) {                                                 // объявляем конструктор с данными и селектором
+    constructor ({link, name, likes, _id, owner}, handleCardClick, selector, putLike, deleteLike, deleteCard) {                                                 // объявляем конструктор с данными и селектором
         this._link = link;
         this._name = name;
+        this._likes = likes;
+        this._id = _id;
         this._handleCardClick = handleCardClick;
         this._selector = selector;
+        this._putLike = putLike;
+        this._deleteLike = deleteLike;
+        this._owner = owner;
+        this._deleteCard = deleteCard;
     }
 
     _getCardTemplate() {
@@ -18,27 +24,36 @@ export default class Card {                                                     
     }
     
     // функция постановки лайка
-    _toggleLike (evt) {             
-        evt.target.classList.toggle('elements__like_active');  // добавляем или удалем модификатор 
+    _toggleLike (evt) {
+        if (evt.target.classList.contains('elements__like_active')) {
+            evt.target.classList.remove('elements__like_active');  // удалем модификатор
+            this._element.querySelector('.elements__like-counter').textContent = this._likes.length -= 1;
+            this._deleteLike(this._id);
+            return;
+        } 
+        evt.target.classList.add('elements__like_active');  // добавляем модификатор
+        this._putLike(this._id);
+        this._element.querySelector('.elements__like-counter').textContent = this._likes.length += 1;
     };
     
     // функция удаления картчоки
-    _cardDelete (evt) {              
-        evt.target.closest('.elements__item').remove();  // удаляем карточку
-        this._element.removeEventListener('click', this._cardHandler);
+    _cardDelete () {              
+        this._deleteCard(); // коллбэк для удаления карточки с сервера
+        this._element.remove();  // удаляем карточку
+        this._element.removeEventListener('click', this._cardHandler); // удаляем слушатели
     };
 
     // функция определяет клики по карточке
     _cardClickHandler (evt) {
         if (evt.target.classList.contains('elements__like')) {   // лайк
-            this._toggleLike(evt);  // добавляем или удалем модификатор 
+            this._toggleLike(evt);
         }
         if (evt.target.classList.contains('elements__img')) {   // попап с картинкой
             this._handleCardClick({link : this._link, name: this._name});
         }
         if (evt.target.classList.contains('elements__trash')) {  // удаление
-            this._cardDelete(evt);
-        }
+            this._cardDelete();
+        } 
     };
 
     // функция устанавливает слушатель на карточку
@@ -47,13 +62,25 @@ export default class Card {                                                     
         this._element.addEventListener('click', this._cardHandler);
     }
 
+    _checkCardOwner (ownerId) {
+        if (ownerId === '523c9085d438a93b559aa772') {
+            return; 
+        } else {
+            this._element.querySelector('.elements__trash').classList.add('elements__trash_hidden');
+        }
+    }
+
     // метод наполняет карточку данными
     generateCard() {
         this._getCardTemplate();                                      // получаем разметку
         this._setCardEventListeners();                                // устанавливаем слушатели
         this._element.querySelector('.elements__img').src = this._link;  // вставляем картинку
         this._element.querySelector('.elements__img').alt = this._name;  // устанавливаем значение атрибута alt
+        this._element.querySelector('.elements__like-counter').textContent = this._likes.length; // счётчик лайков
         this._element.querySelector('.elements__title').textContent = this._name; // вставляем название
+        this._element.dataset.owner = this._owner._id;
+        this._checkCardOwner(this._owner._id);
+        this._element.id = this._id; // устанавливаем id
         return this._element;    // возвращаем готовую карточку
     }
 }
