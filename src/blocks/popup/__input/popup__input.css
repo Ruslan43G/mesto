@@ -7,10 +7,6 @@
     outline: none;
 }
 
-.popup__input:nth-of-type(even) {
-    margin-top: ;
-} 
-
 @media screen and (max-width: 500px) {
     .popup__input{
         max-width: 64vw;

@@ -1,6 +1,6 @@
 .popup__delete-container {
     width: 430px;
-    height: 181px;
+    min-height: 181px;
     background-color: white;
     border-radius: 10px;
     box-sizing: border-box;
@@ -9,4 +9,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+@media screen and (max-width: 500px) {
+    .popup__delete-container {
+        max-width: 75vw;
+        min-height: 150px;
+        padding: 20px;
+    }
 }

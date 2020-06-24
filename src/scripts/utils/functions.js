@@ -1,20 +1,18 @@
-import {popupImage, errorSpan, formInput, forms} from './constants.js';
+import {errorSpan, formInput, forms} from './constants.js';
 import FormValidator from '../components/FormValidator.js'
 
 // функция обнуления ошибок
 function errorClean (elem) {
-    if (elem !== popupImage) {
-        errorSpan.forEach((span) => {
-            span.classList.remove('popup__error_visible');         // удаляем со спанов кмодификатор с ошибкой
-            span.textContent = '';
-        })
-        formInput.forEach((input) => {
-            input.classList.remove('popup__input_type_error');    // удаляем с инпутов модификатор с ошибкой
-        })
-        const formButton = elem.querySelector('.popup__button');
-        formButton.disabled = true;                               // возвращаем кнопку в дефолтное состояние
-        formButton.classList.add('popup__button_disabled');
-    }
+    errorSpan.forEach((span) => {
+        span.classList.remove('popup__error_visible');         // удаляем со спанов кмодификатор с ошибкой
+        span.textContent = '';
+    })
+    formInput.forEach((input) => {
+        input.classList.remove('popup__input_type_error');    // удаляем с инпутов модификатор с ошибкой
+    })
+    const formButton = elem.querySelector('.popup__button');
+    formButton.disabled = true;                               // возвращаем кнопку в дефолтное состояние
+    formButton.classList.add('popup__button_disabled');  
 }
 
 // функция находит формы и запускает на них процесс валидации.

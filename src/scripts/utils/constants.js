@@ -1,6 +1,7 @@
+const profilePopup = document.querySelector('#profile-form'); // выбираем попап редактирования профиля
 const popUp = document.querySelector('.profile__edit-btn'); // выбираем кнопку редактировать в профиле
-const name = document.querySelector('.profile__name');
-const job = document.querySelector('.profile__about');
+const name = document.querySelector('.profile__name'); // выбираем имя в профиле
+const job = document.querySelector('.profile__about'); // выбираем о себе в профиле
 const nameInput = document.querySelector('#profile-input-name'); // выбираем форму ввода имени в попапе редактирования профиля
 const jobInput = document.querySelector('#profile-input-about'); // выбираем форму ввода о себе в попапе реадктирования профиля
 const formElement = document.querySelector('#profile-form'); // Находим форму редактирования профиля в DOM
@@ -39,4 +40,4 @@ const initialCards = [
     }
 ];
 
-export {popUp, name, job, nameInput, jobInput, formElement, cardBtn, formCardElement, popupImage, formInput, errorSpan, forms, initialCards, editAvatar};
+export {profilePopup, popUp, name, job, nameInput, jobInput, formElement, cardBtn, formCardElement, popupImage, formInput, errorSpan, forms, initialCards, editAvatar};

@@ -37,9 +37,8 @@ export default class Card {                                                     
     };
     
     // функция удаления картчоки
-    _cardDelete () {              
+    _cardDelete () {    
         this._deleteCard(); // коллбэк для удаления карточки с сервера
-        this._element.remove();  // удаляем карточку
         this._element.removeEventListener('click', this._cardHandler); // удаляем слушатели
     };
 
@@ -62,11 +61,19 @@ export default class Card {                                                     
         this._element.addEventListener('click', this._cardHandler);
     }
 
+    // метод проверяет отправителя карточки и скрывает иконку удаления
     _checkCardOwner (ownerId) {
         if (ownerId === '523c9085d438a93b559aa772') {
             return; 
         } else {
             this._element.querySelector('.elements__trash').classList.add('elements__trash_hidden');
+        }
+    }
+
+    // метод проверяет если лайк поставил я, то накидывает модификатор.
+    _checkLikeOwner() {
+        if (this._likes.find(item => item._id === '523c9085d438a93b559aa772')) {
+            this._element.querySelector('.elements__like').classList.add('elements__like_active');
         }
     }
 
@@ -79,6 +86,8 @@ export default class Card {                                                     
         this._element.querySelector('.elements__like-counter').textContent = this._likes.length; // счётчик лайков
         this._element.querySelector('.elements__title').textContent = this._name; // вставляем название
         this._element.dataset.owner = this._owner._id;
+        this._element.dataset.id = this._id;
+        this._checkLikeOwner();
         this._checkCardOwner(this._owner._id);
         this._element.id = this._id; // устанавливаем id
         return this._element;    // возвращаем готовую карточку

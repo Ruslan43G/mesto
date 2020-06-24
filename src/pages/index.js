@@ -15,13 +15,26 @@ import {popUp,
     formCardElement,
     editAvatar} from '../scripts/utils/constants.js';
 import {errorClean, launchFormValidation, textWhileLoading} from '../scripts/utils/functions.js';
+
 // создаем экземпляр класса API
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-12/cards',
     headers: {
       authorization: '627f7bad-0dfb-4267-9517-9e8391316bf9',
       'Content-Type': 'application/json'
-    }});
+    }
+});
+
+// Отрисовываем изначальные карточки вызовом метода экземпляра Api
+api.getInitialCards()
+    .then((res) => {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`${res.status} ${res.statusText}`);
+    })
+    .then((data) => sectionRender.renderItems(data))
+    .catch((err) => console.log(err));
 
 // создаем экземпляр попапа для редактировать профиль
 const profilePopup = new PopupWithForm('.popup', (formData) => {
@@ -56,9 +69,11 @@ deletePopup.submit = function (_id) {
     deletePopup.open();
     this._popup.addEventListener('submit', (evt) => {
         evt.preventDefault();
-        this.close();
+        document.querySelector(`div[data-id= "${_id}"]`).remove();
         api.deleteCard(_id);
-    })};
+        this.close();
+    });
+};
 
 //создаём экземпляр класса Section для отрисовки элементов.
 const sectionRender= new Section({
@@ -68,8 +83,8 @@ const sectionRender= new Section({
     const card = new Card({link, name, likes, _id, owner},
         ({link, name}) => imagePopup.open({link, name}),
         '#template',
-        (_id) => api.putLike(_id),
-        (_id) => api.deleteLike(_id),
+        () => api.putLike(_id),
+        () => api.deleteLike(_id),
         () => deletePopup.submit(_id));
     //Вставляем карточку в контейнер
     sectionRender.addItem(card.generateCard());
@@ -119,17 +134,6 @@ cardBtn.addEventListener('click', () => {
 
 // при загрузке страницы загружаем с сервера имя пользователя и выводим на страницу
 api.getUserInfo();
-// Отрисовываем изначальные карточки вызовом метода экземпляра Api
-api.getInitialCards()
-    .then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`${res.status} ${res.statusText}`);
-    })
-    .then((data) => sectionRender.renderItems(data))
-    .catch((err) => console.log(err));
+
 // вызываем функцию для запуска валидации на формах.
-launchFormValidation(); 
-
-
+launchFormValidation();
