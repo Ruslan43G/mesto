@@ -7,13 +7,15 @@ export default class Popup {
 
     open() {                                                 // метод открытия попапа
         this._popup.classList.add('popup_opened');
-        this._setEventListeners();
+        this._handleEsc = this._handleEscClose.bind(this);
+        document.addEventListener('keydown', this._handleEsc);
     }
 
     close() {                                               // метод закрытия попапа
         this._popup.classList.remove('popup_opened');
         this._popup.removeEventListener('click', this._click);
         document.removeEventListener('keydown', this._handleEsc);
+
     }
 
     _handleEscClose(evt) {                                  
@@ -22,11 +24,8 @@ export default class Popup {
         };
     }
 
-    _setEventListeners() {                                  // метод установки слушателей на попап
-        this._click = this._handlePopupClick.bind(this);
-        this._handleEsc = this._handleEscClose.bind(this);
-        this._popup.addEventListener('click', this._click);
-        document.addEventListener('keydown', this._handleEsc);
+    setEventListeners() {                                  // метод установки слушателей на попап
+        this._popup.addEventListener('click', (evt) => this._handlePopupClick(evt)); 
     }
 
     _handlePopupClick(evt) {

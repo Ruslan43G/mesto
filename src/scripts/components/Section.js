@@ -7,7 +7,7 @@ export default  class Section {
     }
   
     renderItems(renderedItems) {
-      renderedItems.forEach(item => this._renderer(item));      // метод отвечает за отрисовку всех элементов. Использует функцию из конструктора.
+      renderedItems.reverse().forEach(item => this._renderer(item));      // метод отвечает за отрисовку всех элементов. Использует функцию из конструктора.
     }
   
     addItem(element) {                                                // меотд для вставки дом элемента в контейнер.

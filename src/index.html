@@ -37,7 +37,7 @@
        </footer>
        <!--POPUP редактирования профиля-->
        <section class="popup">
-            <form class="popup__container" id="profile-form" novalidate>
+            <form class="popup__container popup__container-profile" id="profile-form" novalidate>
                 <button class="popup__icon-close" type="button"></button>
                 <h3 class="popup__title popup__title_form">Редактировать профиль</h3>
                 <input class="popup__input" id="profile-input-name" name="name" type="text" placeholder="Имя" minlength="2" maxlength="40" pattern="^[А-Яа-яЁёA-Za-z\s-]+$" required>
@@ -88,7 +88,7 @@
     </div>
 <!--ШАБЛОН ДЛЯ ДОБАВЛЕНИЯ КАРТОЧКИ-->
 <template id="template">
-    <div class="elements__item" data-owner="" data-id="">
+    <div class="elements__item" data-owner="">
         <img class="elements__img" src="#" alt="изображение города">
         <button class="elements__trash" type="button"></button>
         <h3 class="elements__title"></h3>

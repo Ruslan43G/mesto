@@ -1,12 +1,12 @@
 export default class FormValidator {
 
-    constructor (data, element) {
-        this._inputSelector = data.inputSelector;
-        this._submitButtonSelector = data.submitButtonSelector;
-        this._inactiveButtonClass = data.inactiveButtonClass;
-        this._inputErrorClass = data.inputErrorClass;
-        this._errorClass = data.errorClass;
-        this._element = element;
+    constructor (data) {
+        this._element = document.querySelector(data.formSelector);                           // форма
+        this._inputList = Array.from(this._element.querySelectorAll(data.inputSelector));    // Массив инпутов в форме
+        this._submitButton = this._element.querySelector(data.submitButtonSelector);         // Кнопка сабмит в форме
+        this._inactiveButtonClass = data.inactiveButtonClass;                                // Модификатор неактивной кнопки
+        this._inputErrorClass = data.inputErrorClass;                                        // Модификатор инпута с ошибкой
+        this._errorClass = data.errorClass;                                                  // Модификатор спана с ошибкой
     }
 
     // функция для показа ошибки валидации
@@ -54,21 +54,34 @@ export default class FormValidator {
 
     // функция устанавливает слушатели инпута на формы
     _setFormEventListeners (formElement) {
-        const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));        // создаём массив инпутов
-        const buttonElement = formElement.querySelector(this._submitButtonSelector);            // находим кнопку  сабмит
-        this._toggleButtonState(inputList, buttonElement);                               // выключаем кнопку
-        inputList.forEach((inputElement) => {                                            // проходим по массиву инпутов
+        //this._toggleButtonState(inputList, buttonElement);                               // выключаем кнопку
+        this._inputList.forEach((inputElement) => {                                            // проходим по массиву инпутов
             inputElement.addEventListener('input', () => {                         // каждому добавляем слушатель ввода
                 this._checkInputValidity (formElement, inputElement);                    // функцию проверки игпутов и вывода ошибки 
-                this._toggleButtonState (inputList, buttonElement);                      // выключение кнопки
+                this._toggleButtonState (this._inputList , this._submitButton);                      // выключение кнопки
             });
         });
     }
 
     // функция запускающая процесс валидации
-
     enableValidation () {    
         this._setFormEventListeners(this._element);                                 // вызываем метод на форму
     };
+
+    // Метод для сброса ошибок
+    formErrorsReset() {
+        this._inputList.forEach((input) => input.classList.remove(this._inputErrorClass));
+        const errors = Array.from(this._element.querySelectorAll('.popup__error'));
+        errors.forEach((error) => {
+            error.classList.remove(this._inputErrorClass);
+            error.textContent = '';
+        });
+        if (this._element.classList.contains('popup__container-profile')) {
+            this._submitButton.classList.remove(this._inactiveButtonClass);                      // удаляем модификатор
+            this._submitButton.disabled = false;
+            return;
+        }
+        this._toggleButtonState(this._inputList, this._submitButton);
+    }
 
 }
