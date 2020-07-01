@@ -45,7 +45,8 @@ export default class Card {                                                     
     
     // функция удаления картчоки
     cardDelete () {    
-        this._element.remove();      
+        this._element.remove();
+        this._element.removeEventListener('click', this._cardHandler); // удаляем слушатели      
     };
 
     // функция определяет клики по карточке
