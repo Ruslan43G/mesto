@@ -35,28 +35,24 @@ const api = new Api({
 
 // создаем экземпляр попапа для редактировать профиль
 const profilePopup = new PopupWithForm('.popup', (formData) => {
+    textWhileLoading(true, '#profile-form');
     //Записываем данные на страницу
     api.setUserInfo(formData) // отправляем данные о профиле на сервер
-        .then((data) => userInfo.setUserInfo(data))
-        .catch((err) => console.log(err))
-        .finally(() => {
-            textWhileLoading(true, '#profile-form');
-            profilePopup.close();
-        });
-    api.getUserInfo(); // Загружаем данные на страницу
-     
+        .then(data => userInfo.setUserInfo(data))
+        .then(() => profilePopup.close())
+        .catch(err => console.log(err)) 
 });
 profilePopup.setEventListeners();
 
 // создаём экземпляр попапа для редактирования аватара
 const avatarPopup = new PopupWithForm('.popup__avatar', (formData) => {
+    textWhileLoading(true, '#avatar-form');
     api.setUserAvatar(formData)
-        .then(data => userInfo.setUserAvatar(data))
-        .catch(err => console.log(err))
-        .finally( () => {
-            textWhileLoading(true, '#avatar-form');
-            avatarPopup.close();
+        .then((data) => {
+            userInfo.setUserAvatar(data);
         })
+        .then(() => avatarPopup.close())
+        .catch(err => console.log(err))
 });
 
 avatarPopup.setEventListeners();
@@ -72,10 +68,8 @@ const deleteCardPopup = new PopupDeleteConfirm('.popup_delete', (item, card) => 
     .then(() => {
     card.cardDelete();
     })
+    .then(() => deleteCardPopup.close())
     .catch(err => console.log(err))
-    .finally(() => {
-    deleteCardPopup.close();
-    })
 });
  deleteCardPopup.setEventListeners();
 
@@ -104,8 +98,9 @@ popUp.addEventListener('click', () => {
     //очищаем ошибки валидации в форме
     profileValidation.formErrorsReset();
     //записываем данные в форму попапа
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
+    const data = userInfo.getUserInfo();
+    nameInput.value = data.name;
+    jobInput.value = data.job;
     //открываем попап
     profilePopup.open();
 }); 
@@ -117,13 +112,12 @@ imagePopup.setEventListeners();
 // создаём экземпляр попапа для добавленя картоки
 const addCardPopup = new PopupWithForm('.popup_card', (formData) => {
     // получаем данные через API и отрисовываем карточку
+    textWhileLoading(true, '#card-form');
     api.postNewCard(formData)
         .then((data) => sectionRender.renderItems([data]))
+        .then (() => addCardPopup.close())
         .catch((err) => console.log(err))
-        .finally(() => {
-            textWhileLoading(true, '#card-form');
-            addCardPopup.close();
-        });  
+        
 });
 addCardPopup.setEventListeners();
 

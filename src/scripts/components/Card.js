@@ -28,17 +28,17 @@ export default class Card {                                                     
     _toggleLike (evt) {
         if (evt.target.classList.contains('elements__like_active')) {
             this._deleteLike(this._id)
-                .then(() => {
+                .then((res) => {
                     evt.target.classList.remove('elements__like_active');  // удалем модификатор
-                    this._element.querySelector('.elements__like-counter').textContent = this._likes.length -= 1;
+                    this._element.querySelector('.elements__like-counter').textContent = res.likes.length;
                 })
                 .catch(err => console.log(err));
             return;
         }
         this._putLike(this._id)
-            .then(() => {
+            .then((res) => {
                 evt.target.classList.add('elements__like_active');  // добавляем модификатор
-                this._element.querySelector('.elements__like-counter').textContent = this._likes.length += 1;
+                this._element.querySelector('.elements__like-counter').textContent = res.likes.length;
             })
             .catch(err => console.log(err));
     };
