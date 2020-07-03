@@ -12,14 +12,12 @@ import {popUp,
     jobInput, 
     cardBtn, 
     editAvatar} from '../scripts/utils/constants.js';
-import {textWhileLoading} from '../scripts/utils/functions.js';
 import FormValidator from '../scripts/components/FormValidator';
 import UserInfo from '../scripts/components/UserInfo';
 import { data } from 'autoprefixer';
 
 // переменная хранит данные о пользователе
 let profileInfo;
-let deletedCard = false; 
 
 // создаём экземпляр класса UserINfo
 const userInfo = new UserInfo({name: '.profile__name', job: '.profile__about', avatar: '.profile__img'});
@@ -35,31 +33,37 @@ const api = new Api({
 
 // создаем экземпляр попапа для редактировать профиль
 const profilePopup = new PopupWithForm('.popup', (formData) => {
-    textWhileLoading(true, '#profile-form');
+    profilePopup.setLoadingButtonText();
     //Записываем данные на страницу
     api.setUserInfo(formData) // отправляем данные о профиле на сервер
         .then(data => userInfo.setUserInfo(data))
         .then(() => profilePopup.close())
-        .catch(err => console.log(err)) 
+        .catch((err) => {
+            profilePopup.setDefaultButtonText();
+            console.log(err)
+        }) 
 });
 profilePopup.setEventListeners();
 
 // создаём экземпляр попапа для редактирования аватара
 const avatarPopup = new PopupWithForm('.popup__avatar', (formData) => {
-    textWhileLoading(true, '#avatar-form');
+    avatarPopup.setLoadingButtonText();
     api.setUserAvatar(formData)
         .then((data) => {
             userInfo.setUserAvatar(data);
         })
         .then(() => avatarPopup.close())
-        .catch(err => console.log(err))
+        .catch((err) => {
+            avatarPopup.setDefaultButtonText();
+            console.log(err)
+        })
 });
 
 avatarPopup.setEventListeners();
 // ставим слушатель на редактирование аватара
 editAvatar.addEventListener('click', () => {
     editAvatarValidation.formErrorsReset();
-    textWhileLoading(false, '#avatar-form');
+    avatarPopup.setDefaultButtonText();
     avatarPopup.open();
 })
 
@@ -94,7 +98,7 @@ const sectionRender= new Section({
 
 // Ловим клик по кнопке редактирования профиля   
 popUp.addEventListener('click', () => {
-    textWhileLoading(false, '#profile-form');
+    profilePopup.setDefaultButtonText();
     //очищаем ошибки валидации в форме
     profileValidation.formErrorsReset();
     //записываем данные в форму попапа
@@ -112,18 +116,21 @@ imagePopup.setEventListeners();
 // создаём экземпляр попапа для добавленя картоки
 const addCardPopup = new PopupWithForm('.popup_card', (formData) => {
     // получаем данные через API и отрисовываем карточку
-    textWhileLoading(true, '#card-form');
+    addCardPopup.setLoadingButtonText();
     api.postNewCard(formData)
         .then((data) => sectionRender.renderItems([data]))
         .then (() => addCardPopup.close())
-        .catch((err) => console.log(err))
+        .catch((err) => {
+            textWhileLoading(false, '#card-form');
+            console.log(err)
+        });
         
 });
 addCardPopup.setEventListeners();
 
 // ловим клик по кнопке добавления карточки
 cardBtn.addEventListener('click', () => {
-    textWhileLoading(false, '#card-form');
+    addCardPopup.setDefaultButtonText();
     //очищаем ошибки в форме
     addCardValidation.formErrorsReset();
     //открываем попап
