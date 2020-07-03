@@ -67,6 +67,7 @@ editAvatar.addEventListener('click', () => {
     avatarPopup.open();
 })
 
+// создаём экземпляр класса попапа удаления карточки
 const deleteCardPopup = new PopupDeleteConfirm('.popup_delete', (item, card) => {
     api.deleteCard(item._id)
     .then(() => {
@@ -121,7 +122,7 @@ const addCardPopup = new PopupWithForm('.popup_card', (formData) => {
         .then((data) => sectionRender.renderItems([data]))
         .then (() => addCardPopup.close())
         .catch((err) => {
-            textWhileLoading(false, '#card-form');
+            addCardPopup.setDefaultButtonText();
             console.log(err)
         });
         
