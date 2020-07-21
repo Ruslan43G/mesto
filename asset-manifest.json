@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.d54b7d15.chunk.css",
-    "main.js": "/static/js/main.ac895eb6.chunk.js",
-    "main.js.map": "/static/js/main.ac895eb6.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.e8402bce.js",
-    "runtime-main.js.map": "/static/js/runtime-main.e8402bce.js.map",
-    "static/js/2.bfa99d5d.chunk.js": "/static/js/2.bfa99d5d.chunk.js",
-    "static/js/2.bfa99d5d.chunk.js.map": "/static/js/2.bfa99d5d.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.9d7b34627d0572284bd014a7926b224d.js": "/precache-manifest.9d7b34627d0572284bd014a7926b224d.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.d54b7d15.chunk.css.map": "/static/css/main.d54b7d15.chunk.css.map",
-    "static/js/2.bfa99d5d.chunk.js.LICENSE.txt": "/static/js/2.bfa99d5d.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/static/media/liked.9fdebb6b.svg",
-    "static/media/Vector.svg": "/static/media/Vector.855a8c98.svg"
+    "main.css": "/Ruslan43G/mesto/static/css/main.0f9751c6.chunk.css",
+    "main.js": "/Ruslan43G/mesto/static/js/main.52653843.chunk.js",
+    "main.js.map": "/Ruslan43G/mesto/static/js/main.52653843.chunk.js.map",
+    "runtime-main.js": "/Ruslan43G/mesto/static/js/runtime-main.0cf58355.js",
+    "runtime-main.js.map": "/Ruslan43G/mesto/static/js/runtime-main.0cf58355.js.map",
+    "static/js/2.bfa99d5d.chunk.js": "/Ruslan43G/mesto/static/js/2.bfa99d5d.chunk.js",
+    "static/js/2.bfa99d5d.chunk.js.map": "/Ruslan43G/mesto/static/js/2.bfa99d5d.chunk.js.map",
+    "index.html": "/Ruslan43G/mesto/index.html",
+    "precache-manifest.6263fb978c65adbd25a2b056f413c2d2.js": "/Ruslan43G/mesto/precache-manifest.6263fb978c65adbd25a2b056f413c2d2.js",
+    "service-worker.js": "/Ruslan43G/mesto/service-worker.js",
+    "static/css/main.0f9751c6.chunk.css.map": "/Ruslan43G/mesto/static/css/main.0f9751c6.chunk.css.map",
+    "static/js/2.bfa99d5d.chunk.js.LICENSE.txt": "/Ruslan43G/mesto/static/js/2.bfa99d5d.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Ruslan43G/mesto/static/media/liked.9fdebb6b.svg",
+    "static/media/Vector.svg": "/Ruslan43G/mesto/static/media/Vector.855a8c98.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e8402bce.js",
+    "static/js/runtime-main.0cf58355.js",
     "static/js/2.bfa99d5d.chunk.js",
-    "static/css/main.d54b7d15.chunk.css",
-    "static/js/main.ac895eb6.chunk.js"
+    "static/css/main.0f9751c6.chunk.css",
+    "static/js/main.52653843.chunk.js"
   ]
 }
