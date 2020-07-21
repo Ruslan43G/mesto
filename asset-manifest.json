@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Ruslan43G/mesto/static/css/main.d61bdd2a.chunk.css",
-    "main.js": "/Ruslan43G/mesto/static/js/main.52653843.chunk.js",
-    "main.js.map": "/Ruslan43G/mesto/static/js/main.52653843.chunk.js.map",
-    "runtime-main.js": "/Ruslan43G/mesto/static/js/runtime-main.0cf58355.js",
-    "runtime-main.js.map": "/Ruslan43G/mesto/static/js/runtime-main.0cf58355.js.map",
-    "static/js/2.bfa99d5d.chunk.js": "/Ruslan43G/mesto/static/js/2.bfa99d5d.chunk.js",
-    "static/js/2.bfa99d5d.chunk.js.map": "/Ruslan43G/mesto/static/js/2.bfa99d5d.chunk.js.map",
-    "index.html": "/Ruslan43G/mesto/index.html",
-    "precache-manifest.d21cea42618e04b4cec11d3a53dfcf3b.js": "/Ruslan43G/mesto/precache-manifest.d21cea42618e04b4cec11d3a53dfcf3b.js",
-    "service-worker.js": "/Ruslan43G/mesto/service-worker.js",
-    "static/css/main.d61bdd2a.chunk.css.map": "/Ruslan43G/mesto/static/css/main.d61bdd2a.chunk.css.map",
-    "static/js/2.bfa99d5d.chunk.js.LICENSE.txt": "/Ruslan43G/mesto/static/js/2.bfa99d5d.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/Ruslan43G/mesto/static/media/liked.9fdebb6b.svg",
-    "static/media/Vector.svg": "/Ruslan43G/mesto/static/media/Vector.855a8c98.svg"
+    "main.css": "/static/css/main.9cbe8c70.chunk.css",
+    "main.js": "/static/js/main.ac895eb6.chunk.js",
+    "main.js.map": "/static/js/main.ac895eb6.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e8402bce.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e8402bce.js.map",
+    "static/js/2.bfa99d5d.chunk.js": "/static/js/2.bfa99d5d.chunk.js",
+    "static/js/2.bfa99d5d.chunk.js.map": "/static/js/2.bfa99d5d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.d434e32704819047574502832c8eca36.js": "/precache-manifest.d434e32704819047574502832c8eca36.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.9cbe8c70.chunk.css.map": "/static/css/main.9cbe8c70.chunk.css.map",
+    "static/js/2.bfa99d5d.chunk.js.LICENSE.txt": "/static/js/2.bfa99d5d.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/liked.9fdebb6b.svg",
+    "static/media/Vector.svg": "/static/media/Vector.855a8c98.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0cf58355.js",
+    "static/js/runtime-main.e8402bce.js",
     "static/js/2.bfa99d5d.chunk.js",
-    "static/css/main.d61bdd2a.chunk.css",
-    "static/js/main.52653843.chunk.js"
+    "static/css/main.9cbe8c70.chunk.css",
+    "static/js/main.ac895eb6.chunk.js"
   ]
 }
