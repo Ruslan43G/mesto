@@ -6,6 +6,8 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import Api from '../scripts/components/Api.js';
 import PopupDeleteConfirm from '../scripts/components/PopupDeleteConfirm.js';
 import {popUp,
+    name,
+    job,
     nameInput, 
     jobInput, 
     cardBtn, 
